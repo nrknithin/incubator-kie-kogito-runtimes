@@ -22,7 +22,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import io.fabric8.kubernetes.client.Config;
-import io.fabric8.kubernetes.client.server.mock.KubernetesServer;
+import io.fabric8.kubernetes.client.KubernetesClient;
+import io.fabric8.kubernetes.client.server.mock.KubernetesMockServer;
 import io.quarkus.test.common.QuarkusTestResourceLifecycleManager;
 
 /**
@@ -31,39 +32,53 @@ import io.quarkus.test.common.QuarkusTestResourceLifecycleManager;
 public class KubernetesMockServerTestResource implements QuarkusTestResourceLifecycleManager {
 
     private static final String TEST_NAMESPACE = "serverless-workflow-greeting-quarkus";
-    private final KubernetesServer server = new KubernetesServer(false, true); // Use CRUD mode
+    private KubernetesMockServer server;
+    private KubernetesClient client;
 
     @Override
     public Map<String, String> start() {
         try {
-            server.before(); // Start the mock Kubernetes server
+            // Create and start the mock server with CRUD mode enabled
+            server = new KubernetesMockServer(false);
+            server.init();
+            client = server.createClient();
+
+            String mockServerUrl = client.getConfiguration().getMasterUrl();
+
+            // Ensure the Fabric8 client picks up the mock server
+            System.setProperty(Config.KUBERNETES_MASTER_SYSTEM_PROPERTY, mockServerUrl);
+
+            Map<String, String> config = new HashMap<>();
+            config.put("quarkus.kubernetes-client.master-url", mockServerUrl);
+            config.put("quarkus.kubernetes-client.namespace", TEST_NAMESPACE);
+            config.put("quarkus.kubernetes-client.trust-certs", "true");
+            return config;
         } catch (Exception e) {
             throw new RuntimeException("Failed to start Kubernetes mock server", e);
         }
-
-        String mockServerUrl = server.getClient().getConfiguration().getMasterUrl();
-
-        // Ensure the Fabric8 client picks up the mock server
-        System.setProperty(Config.KUBERNETES_MASTER_SYSTEM_PROPERTY, mockServerUrl);
-
-        Map<String, String> config = new HashMap<>();
-        config.put("quarkus.kubernetes-client.master-url", mockServerUrl);
-        config.put("quarkus.kubernetes-client.namespace", TEST_NAMESPACE);
-        config.put("quarkus.kubernetes-client.trust-certs", "true");
-        return config;
     }
 
     @Override
     public void stop() {
+        if (client != null) {
+            client.close();
+        }
         if (server != null) {
-            server.after(); // Stop the mock server
+            server.destroy();
         }
     }
 
     /**
      * Expose the Fabric8 Kubernetes mock server instance for advanced use in tests.
      */
-    public KubernetesServer getServer() {
+    public KubernetesMockServer getServer() {
         return server;
+    }
+    
+    /**
+     * Get the Kubernetes client connected to the mock server.
+     */
+    public KubernetesClient getClient() {
+        return client;
     }
 }

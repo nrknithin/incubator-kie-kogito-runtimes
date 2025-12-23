@@ -27,9 +27,9 @@ import org.kie.kogito.serverless.workflow.asyncapi.AsyncChannelInfo;
 import org.kie.kogito.serverless.workflow.asyncapi.AsyncInfo;
 import org.kie.kogito.serverless.workflow.asyncapi.AsyncInfoConverter;
 
-import com.asyncapi.v2._6_0.model.AsyncAPI;
-import com.asyncapi.v2._6_0.model.channel.ChannelItem;
-import com.asyncapi.v2._6_0.model.channel.operation.Operation;
+import com.asyncapi.v3._0_0.model.AsyncAPI;
+import com.asyncapi.v3._0_0.model.channel.Channel;
+import com.asyncapi.v3._0_0.model.operation.Operation;
 
 import io.quarkiverse.asyncapi.config.AsyncAPIRegistry;
 
@@ -48,19 +48,25 @@ public class AsyncAPIInfoConverter implements AsyncInfoConverter {
 
     private static AsyncInfo from(AsyncAPI asyncApi) {
         Map<String, AsyncChannelInfo> map = new HashMap<>();
-        for (Entry<String, ChannelItem> entry : asyncApi.getChannels().entrySet()) {
-            addChannel(map, entry.getValue().getPublish(), entry.getKey() + "_out", true);
-            addChannel(map, entry.getValue().getSubscribe(), entry.getKey(), false);
+        if (asyncApi.getOperations() != null) {
+            asyncApi.getOperations().forEach((operationId, operationObj) -> {
+                if (operationObj instanceof Operation) {
+                    Operation operation = (Operation) operationObj;
+                    String channelRef = operation.getChannel() != null ? String.valueOf(operation.getChannel()) : null;
+                    if (channelRef != null) {
+                        String channelName = channelRef.contains("/") ? channelRef.substring(channelRef.lastIndexOf('/') + 1) : channelRef;
+                        boolean isPublish = "send".equalsIgnoreCase(String.valueOf(operation.getAction()));
+                        addChannel(map, operationId, channelName, isPublish);
+                    }
+                }
+            });
         }
         return new AsyncInfo(map);
     }
 
-    private static void addChannel(Map<String, AsyncChannelInfo> map, Operation operation, String channelName, boolean publish) {
-        if (operation != null) {
-            String operationId = operation.getOperationId();
-            if (operationId != null) {
-                map.putIfAbsent(operationId, new AsyncChannelInfo(channelName, publish));
-            }
+    private static void addChannel(Map<String, AsyncChannelInfo> map, String operationId, String channelName, boolean publish) {
+        if (operationId != null) {
+            map.putIfAbsent(operationId, new AsyncChannelInfo(channelName, publish));
         }
     }
 }

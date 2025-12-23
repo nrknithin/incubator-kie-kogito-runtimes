@@ -18,33 +18,46 @@
  */
 package org.kie.kogito.addons.quarkus.k8s.test.utils;
 
+import java.util.HashMap;
 import java.util.Map;
 
-import io.fabric8.openshift.client.server.mock.OpenShiftServer;
+import io.fabric8.openshift.client.OpenShiftClient;
+import io.fabric8.openshift.client.server.mock.OpenShiftMockServer;
 import io.quarkus.test.common.QuarkusTestResourceLifecycleManager;
 
 public class OpenShiftMockServerTestResource implements QuarkusTestResourceLifecycleManager {
 
-    private OpenShiftServer server;
+    private OpenShiftMockServer server;
+    private OpenShiftClient client;
 
     @Override
     public Map<String, String> start() {
-        server = new OpenShiftServer(true, true);
-        server.before(); // Start mock server
+        // Create and start the OpenShift mock server with CRUD mode enabled
+        server = new OpenShiftMockServer(false);
+        server.init();
+        client = server.createOpenShiftClient();
 
-        return Map.of(
-                "quarkus.kubernetes-client.master-url", server.getOpenshiftClient().getMasterUrl().toString(),
-                "quarkus.kubernetes-client.trust-certs", "true");
+        Map<String, String> config = new HashMap<>();
+        config.put("quarkus.kubernetes-client.master-url", client.getMasterUrl().toString());
+        config.put("quarkus.kubernetes-client.trust-certs", "true");
+        return config;
     }
 
     @Override
     public void stop() {
+        if (client != null) {
+            client.close();
+        }
         if (server != null) {
-            server.after(); // Stop mock server
+            server.destroy();
         }
     }
 
-    public OpenShiftServer getServer() {
+    public OpenShiftMockServer getServer() {
         return server;
+    }
+    
+    public OpenShiftClient getClient() {
+        return client;
     }
 }
