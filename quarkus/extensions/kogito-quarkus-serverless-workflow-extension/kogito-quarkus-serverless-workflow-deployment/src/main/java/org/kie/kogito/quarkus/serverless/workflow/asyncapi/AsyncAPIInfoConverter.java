@@ -20,7 +20,6 @@ package org.kie.kogito.quarkus.serverless.workflow.asyncapi;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Optional;
 
 import org.kie.kogito.serverless.workflow.asyncapi.AsyncChannelInfo;
@@ -28,7 +27,6 @@ import org.kie.kogito.serverless.workflow.asyncapi.AsyncInfo;
 import org.kie.kogito.serverless.workflow.asyncapi.AsyncInfoConverter;
 
 import com.asyncapi.v3._0_0.model.AsyncAPI;
-import com.asyncapi.v3._0_0.model.channel.Channel;
 import com.asyncapi.v3._0_0.model.operation.Operation;
 
 import io.quarkiverse.asyncapi.config.AsyncAPIRegistry;
