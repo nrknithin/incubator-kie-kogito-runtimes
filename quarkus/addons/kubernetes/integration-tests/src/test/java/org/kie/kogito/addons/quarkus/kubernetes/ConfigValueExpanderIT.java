@@ -43,7 +43,7 @@ class ConfigValueExpanderIT {
 
     @BeforeEach
     void beforeEach() {
-        createKnativeServiceIfNotExists(mockServer.getClient(), "knative/quarkus-greeting.yaml", NAMESPACE, SERVICENAME);
+        createKnativeServiceIfNotExists(mockServer.createClient(), "knative/quarkus-greeting.yaml", NAMESPACE, SERVICENAME);
     }
 
     @Test

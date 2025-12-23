@@ -89,7 +89,7 @@ class KnativeServingAddonIT {
 
     @BeforeEach
     void beforeEach() {
-        createKnativeServiceIfNotExists(mockServer.getClient(), "knative/quarkus-greeting.yaml", NAMESPACE,
+        createKnativeServiceIfNotExists(mockServer.createClient(), "knative/quarkus-greeting.yaml", NAMESPACE,
                 SERVICENAME, remoteServiceUrl);
     }
 
