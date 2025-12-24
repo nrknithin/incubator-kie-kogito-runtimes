@@ -74,7 +74,7 @@ public class KubernetesMockServerTestResource implements QuarkusTestResourceLife
     public KubernetesMockServer getServer() {
         return server;
     }
-    
+
     /**
      * Get the Kubernetes client connected to the mock server.
      */

@@ -56,7 +56,7 @@ public class OpenShiftMockServerTestResource implements QuarkusTestResourceLifec
     public OpenShiftMockServer getServer() {
         return server;
     }
-    
+
     public OpenShiftClient getClient() {
         return client;
     }
