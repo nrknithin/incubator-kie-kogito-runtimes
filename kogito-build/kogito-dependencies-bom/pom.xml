@@ -95,12 +95,12 @@
     <version.com.h2>2.3.232</version.com.h2> <!-- Overriding version 2.3.230 to fix https://github.com/h2database/h2database/issues/4079 -->
     <version.io.serverlessworkflow>4.1.0.Final</version.io.serverlessworkflow>
     <version.io.smallrye-open-api>4.0.12</version.io.smallrye-open-api>
-    <version.io.smallrye-config>3.11.4</version.io.smallrye-config>
+    <version.io.smallrye-config>3.13.4</version.io.smallrye-config>
     <version.org.awaitility>4.2.2</version.org.awaitility>
 
     <version.com.squareup.okhttp3>4.12.0</version.com.squareup.okhttp3>
 
-    <version.io.smallrye.reactive.mutiny-vertx-web-client>3.18.1</version.io.smallrye.reactive.mutiny-vertx-web-client>
+    <version.io.smallrye.reactive.mutiny-vertx-web-client>3.19.2</version.io.smallrye.reactive.mutiny-vertx-web-client>
 
     <version.io.vertx>4.5.22</version.io.vertx>
     <version.io.grpc>1.76.0</version.io.grpc>
@@ -139,8 +139,8 @@
     <version.org.json-unit-assertj>2.9.0</version.org.json-unit-assertj>
     <version.org.hamcrest>2.2</version.org.hamcrest> <!-- else old version coming from Mockito wins and breaks tests -->
     <version.org.junit>4.13.2</version.org.junit>
-    <version.org.junit.jupiter>5.12.2</version.org.junit.jupiter>
-    <version.org.junit.platform>1.12.2</version.org.junit.platform><!-- otherwise Quarkus brings its own, silently disabling some tests -->
+    <version.org.junit.jupiter>5.13.4</version.org.junit.jupiter>
+    <version.org.junit.platform>1.13.4</version.org.junit.platform><!-- otherwise Quarkus brings its own, silently disabling some tests -->
     <version.org.mockito>5.17.0</version.org.mockito>
     <version.org.testcontainers>2.0.3</version.org.testcontainers>
     <version.org.xmlunit-core>2.10.4</version.org.xmlunit-core>
