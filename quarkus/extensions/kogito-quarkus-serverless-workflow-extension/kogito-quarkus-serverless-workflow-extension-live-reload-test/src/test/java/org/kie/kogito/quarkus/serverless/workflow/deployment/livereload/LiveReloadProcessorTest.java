@@ -57,7 +57,7 @@ public class LiveReloadProcessorTest {
     private static final int PORT = SocketUtils.findAvailablePort();
 
     @RegisterExtension
-    public final static QuarkusDevModeTest test = createTest();
+    public static final QuarkusDevModeTest test = createTest();
 
     private static WireMockServer wireMockServer;
 
@@ -76,7 +76,7 @@ public class LiveReloadProcessorTest {
     }
 
     private static void configureWiremockServer() {
-        wireMockServer = new WireMockServer(WireMockConfiguration.wireMockConfig().extensions(new ResponseTemplateTransformer(null, false, null, java.util.Collections.emptyList())).dynamicPort());
+        wireMockServer = new WireMockServer(WireMockConfiguration.wireMockConfig().extensions(new ResponseTemplateTransformer(null, false, null, Collections.emptyList())).dynamicPort());
         wireMockServer.start();
 
         wireMockServer.stubFor(post(urlEqualTo("/echo"))
