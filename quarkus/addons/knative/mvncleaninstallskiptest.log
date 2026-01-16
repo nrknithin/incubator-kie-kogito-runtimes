@@ -1,0 +1,745 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Detecting the operating system and CPU architecture
+[INFO] ------------------------------------------------------------------------
+[INFO] os.detected.name: linux
+[INFO] os.detected.arch: x86_64
+[INFO] os.detected.version: 5.15
+[INFO] os.detected.version.major: 5
+[INFO] os.detected.version.minor: 15
+[INFO] os.detected.release: ubuntu
+[INFO] os.detected.release.version: 22.04
+[INFO] os.detected.release.like.ubuntu: true
+[INFO] os.detected.release.like.debian: true
+[INFO] os.detected.classifier: linux-x86_64
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] Kogito Add-On Knative - Parent                                     [pom]
+[INFO] KIE Add-On Knative Eventing - Parent                               [pom]
+[INFO] KIE Add-On Knative Eventing                                        [jar]
+[INFO] KIE Add-On Knative Eventing - Deployment                           [jar]
+[INFO] KIE Add-On Knative Eventing - Integration Tests                    [jar]
+[INFO] Kogito Add-On Knative Serving - Parent                             [pom]
+[INFO] Kogito Add-On Knative Serving                                      [jar]
+[INFO] Kogito Add-On Knative Serving - Deployment                         [jar]
+[INFO] Kogito Add-On Knative Serving - Integration Tests                  [jar]
+[INFO] 
+[INFO] ------------< org.kie:kogito-addons-quarkus-knative-parent >------------
+[INFO] Building Kogito Add-On Knative - Parent 999-SNAPSHOT               [1/9]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.1.0:clean (default-clean) @ kogito-addons-quarkus-knative-parent ---
+[INFO] Deleting /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/target
+[INFO] 
+[INFO] --- directory:1.0:highest-basedir (directories) @ kogito-addons-quarkus-knative-parent ---
+[INFO] Highest basedir set to: /home/dev/nrknithin/3-kogito-runtimes
+[INFO] 
+[INFO] --- enforcer:3.3.0:enforce (enforce-versions) @ kogito-addons-quarkus-knative-parent ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- enforcer:3.3.0:enforce (enforce-maven-version) @ kogito-addons-quarkus-knative-parent ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] 
+[INFO] --- enforcer:3.3.0:enforce (enforce-java-version) @ kogito-addons-quarkus-knative-parent ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- checkstyle:3.3.0:check (default) @ kogito-addons-quarkus-knative-parent ---
+[INFO] You have 0 Checkstyle violations.
+[INFO] 
+[INFO] --- formatter:2.13.0:format (default) @ kogito-addons-quarkus-knative-parent ---
+[INFO] Using 'UTF-8' encoding to format source files.
+[INFO] Number of files to be formatted: 0
+[INFO] 
+[INFO] --- impsort:1.8.0:sort (default) @ kogito-addons-quarkus-knative-parent ---
+[INFO] Processed 0 files in 00:00.001 (Already Sorted: 0, Needed Sorting: 0)
+[INFO] 
+[INFO] --- remote-resources:3.2.0:process (process-resource-bundles) @ kogito-addons-quarkus-knative-parent ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] 
+[INFO] --- jar:3.2.0:test-jar (test-jar) @ kogito-addons-quarkus-knative-parent ---
+[INFO] Skipping packaging of the test-jar
+[INFO] 
+[INFO] --- source:3.2.1:jar-no-fork (attach-sources) @ kogito-addons-quarkus-knative-parent ---
+[INFO] 
+[INFO] --- source:3.2.1:test-jar-no-fork (attach-test-sources) @ kogito-addons-quarkus-knative-parent ---
+[INFO] 
+[INFO] --- failsafe:3.2.5:integration-test (integration-test) @ kogito-addons-quarkus-knative-parent ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- failsafe:3.2.5:verify (integration-test) @ kogito-addons-quarkus-knative-parent ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- install:3.1.1:install (default-install) @ kogito-addons-quarkus-knative-parent ---
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/pom.xml to /home/dev/.m2/repository/org/kie/kogito-addons-quarkus-knative-parent/999-SNAPSHOT/kogito-addons-quarkus-knative-parent-999-SNAPSHOT.pom
+[INFO] 
+[INFO] ---------< org.kie:kie-addons-quarkus-knative-eventing-parent >---------
+[INFO] Building KIE Add-On Knative Eventing - Parent 999-SNAPSHOT         [2/9]
+[INFO]   from eventing/pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.1.0:clean (default-clean) @ kie-addons-quarkus-knative-eventing-parent ---
+[INFO] Deleting /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/target
+[INFO] 
+[INFO] --- directory:1.0:highest-basedir (directories) @ kie-addons-quarkus-knative-eventing-parent ---
+[INFO] Highest basedir set to: /home/dev/nrknithin/3-kogito-runtimes
+[INFO] 
+[INFO] --- enforcer:3.3.0:enforce (enforce-versions) @ kie-addons-quarkus-knative-eventing-parent ---
+[INFO] 
+[INFO] --- enforcer:3.3.0:enforce (enforce-maven-version) @ kie-addons-quarkus-knative-eventing-parent ---
+[INFO] 
+[INFO] --- enforcer:3.3.0:enforce (enforce-java-version) @ kie-addons-quarkus-knative-eventing-parent ---
+[INFO] 
+[INFO] --- checkstyle:3.3.0:check (default) @ kie-addons-quarkus-knative-eventing-parent ---
+[INFO] You have 0 Checkstyle violations.
+[INFO] 
+[INFO] --- formatter:2.13.0:format (default) @ kie-addons-quarkus-knative-eventing-parent ---
+[INFO] Using 'UTF-8' encoding to format source files.
+[INFO] Number of files to be formatted: 0
+[INFO] 
+[INFO] --- impsort:1.8.0:sort (default) @ kie-addons-quarkus-knative-eventing-parent ---
+[INFO] Processed 0 files in 00:00.000 (Already Sorted: 0, Needed Sorting: 0)
+[INFO] 
+[INFO] --- remote-resources:3.2.0:process (process-resource-bundles) @ kie-addons-quarkus-knative-eventing-parent ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] 
+[INFO] --- jar:3.2.0:test-jar (test-jar) @ kie-addons-quarkus-knative-eventing-parent ---
+[INFO] Skipping packaging of the test-jar
+[INFO] 
+[INFO] --- source:3.2.1:jar-no-fork (attach-sources) @ kie-addons-quarkus-knative-eventing-parent ---
+[INFO] 
+[INFO] --- source:3.2.1:test-jar-no-fork (attach-test-sources) @ kie-addons-quarkus-knative-eventing-parent ---
+[INFO] 
+[INFO] --- failsafe:3.2.5:integration-test (integration-test) @ kie-addons-quarkus-knative-eventing-parent ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- failsafe:3.2.5:verify (integration-test) @ kie-addons-quarkus-knative-eventing-parent ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- install:3.1.1:install (default-install) @ kie-addons-quarkus-knative-eventing-parent ---
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/pom.xml to /home/dev/.m2/repository/org/kie/kie-addons-quarkus-knative-eventing-parent/999-SNAPSHOT/kie-addons-quarkus-knative-eventing-parent-999-SNAPSHOT.pom
+[INFO] 
+[INFO] ------------< org.kie:kie-addons-quarkus-knative-eventing >-------------
+[INFO] Building KIE Add-On Knative Eventing 999-SNAPSHOT                  [3/9]
+[INFO]   from eventing/runtime/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+Downloading from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kogito-addons-knative-eventing/999-SNAPSHOT/maven-metadata.xml
+Progress (1): 1.4 kB                    Downloaded from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kogito-addons-knative-eventing/999-SNAPSHOT/maven-metadata.xml (1.4 kB at 1.5 kB/s)
+Downloading from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kogito-addons-knative-eventing/999-SNAPSHOT/kogito-addons-knative-eventing-999-20260115.015118-510.pom
+Progress (1): 2.2 kB                    Downloaded from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kogito-addons-knative-eventing/999-SNAPSHOT/kogito-addons-knative-eventing-999-20260115.015118-510.pom (2.2 kB at 12 kB/s)
+Downloading from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kogito-addons-knative-parent/999-SNAPSHOT/maven-metadata.xml
+Progress (1): 612 B                   Downloaded from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kogito-addons-knative-parent/999-SNAPSHOT/maven-metadata.xml (612 B at 1.6 kB/s)
+Downloading from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kogito-addons-knative-parent/999-SNAPSHOT/kogito-addons-knative-parent-999-20260115.015118-509.pom
+Progress (1): 1.5 kB                    Downloaded from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kogito-addons-knative-parent/999-SNAPSHOT/kogito-addons-knative-parent-999-20260115.015118-509.pom (1.5 kB at 8.3 kB/s)
+Downloading from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kogito-addons-quarkus-data-index-health/999-SNAPSHOT/maven-metadata.xml
+Progress (1): 1.4 kB                    Downloaded from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kogito-addons-quarkus-data-index-health/999-SNAPSHOT/maven-metadata.xml (1.4 kB at 3.8 kB/s)
+Downloading from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kogito-addons-quarkus-data-index-health/999-SNAPSHOT/kogito-addons-quarkus-data-index-health-999-20260115.015118-490.pom
+Progress (1): 3.3 kB                    Downloaded from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kogito-addons-quarkus-data-index-health/999-SNAPSHOT/kogito-addons-quarkus-data-index-health-999-20260115.015118-490.pom (3.3 kB at 18 kB/s)
+Downloading from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kogito-addons-quarkus-common-health/999-SNAPSHOT/maven-metadata.xml
+Progress (1): 1.4 kB                    Downloaded from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kogito-addons-quarkus-common-health/999-SNAPSHOT/maven-metadata.xml (1.4 kB at 3.9 kB/s)
+Downloading from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kogito-addons-quarkus-common-health/999-SNAPSHOT/kogito-addons-quarkus-common-health-999-20260115.015118-490.pom
+Progress (1): 3.1 kB                    Downloaded from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kogito-addons-quarkus-common-health/999-SNAPSHOT/kogito-addons-quarkus-common-health-999-20260115.015118-490.pom (3.1 kB at 17 kB/s)
+Downloading from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kogito-addons-knative-eventing/999-SNAPSHOT/kogito-addons-knative-eventing-999-20260115.015118-510.jar
+Progress (1): 7.5/12 kBProgress (1): 8.2/12 kBProgress (1): 12 kB                       Downloaded from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kogito-addons-knative-eventing/999-SNAPSHOT/kogito-addons-knative-eventing-999-20260115.015118-510.jar (12 kB at 64 kB/s)
+Downloading from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kogito-addons-quarkus-data-index-health/999-SNAPSHOT/kogito-addons-quarkus-data-index-health-999-20260115.015118-490.jar
+Downloading from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kogito-addons-quarkus-common-health/999-SNAPSHOT/kogito-addons-quarkus-common-health-999-20260115.015118-490.jar
+Progress (1): 7.5/13 kBProgress (1): 8.2/13 kBProgress (1): 13 kB                       Downloaded from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kogito-addons-quarkus-data-index-health/999-SNAPSHOT/kogito-addons-quarkus-data-index-health-999-20260115.015118-490.jar (13 kB at 72 kB/s)
+Progress (1): 7.5/14 kBProgress (1): 8.2/14 kBProgress (1): 14 kB                       Downloaded from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kogito-addons-quarkus-common-health/999-SNAPSHOT/kogito-addons-quarkus-common-health-999-20260115.015118-490.jar (14 kB at 19 kB/s)
+[INFO] 
+[INFO] --- clean:3.1.0:clean (default-clean) @ kie-addons-quarkus-knative-eventing ---
+[INFO] Deleting /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/runtime/target
+[INFO] 
+[INFO] --- directory:1.0:highest-basedir (directories) @ kie-addons-quarkus-knative-eventing ---
+[INFO] Highest basedir set to: /home/dev/nrknithin/3-kogito-runtimes
+[INFO] 
+[INFO] --- enforcer:3.3.0:enforce (enforce-versions) @ kie-addons-quarkus-knative-eventing ---
+[INFO] 
+[INFO] --- enforcer:3.3.0:enforce (enforce-maven-version) @ kie-addons-quarkus-knative-eventing ---
+[INFO] 
+[INFO] --- enforcer:3.3.0:enforce (enforce-java-version) @ kie-addons-quarkus-knative-eventing ---
+[INFO] 
+[INFO] --- checkstyle:3.3.0:check (default) @ kie-addons-quarkus-knative-eventing ---
+[INFO] You have 0 Checkstyle violations.
+[INFO] 
+[INFO] --- formatter:2.13.0:format (default) @ kie-addons-quarkus-knative-eventing ---
+[INFO] Using 'UTF-8' encoding to format source files.
+[INFO] Number of files to be formatted: 6
+[INFO] Successfully formatted:          0 file(s)
+[INFO] Fail to format:                  0 file(s)
+[INFO] Skipped:                         6 file(s)
+[INFO] Read only skipped:               0 file(s)
+[INFO] Approximate time taken:          0s
+[INFO] 
+[INFO] --- impsort:1.8.0:sort (default) @ kie-addons-quarkus-knative-eventing ---
+[INFO] Processed 6 files in 00:00.268 (Already Sorted: 6, Needed Sorting: 0)
+[INFO] 
+[INFO] --- remote-resources:3.2.0:process (process-resource-bundles) @ kie-addons-quarkus-knative-eventing ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] 
+[INFO] --- resources:3.1.0:resources (default-resources) @ kie-addons-quarkus-knative-eventing ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 4 resources
+[INFO] Copying 3 resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ kie-addons-quarkus-knative-eventing ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 5 source files with javac [debug deprecation release 17] to target/classes
+[INFO] 
+[INFO] --- quarkus-extension:3.27.1:extension-descriptor (default) @ kie-addons-quarkus-knative-eventing ---
+Downloading from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kie-addons-quarkus-knative-eventing-deployment/999-SNAPSHOT/maven-metadata.xml
+Progress (1): 1.4 kB                    Downloaded from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kie-addons-quarkus-knative-eventing-deployment/999-SNAPSHOT/maven-metadata.xml (1.4 kB at 3.8 kB/s)
+[INFO] 
+[INFO] --- resources:3.1.0:testResources (default-testResources) @ kie-addons-quarkus-knative-eventing ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] Copying 3 resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ kie-addons-quarkus-knative-eventing ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 1 source file with javac [debug deprecation release 17] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.3.1:test (default-test) @ kie-addons-quarkus-knative-eventing ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.2.0:jar (default-jar) @ kie-addons-quarkus-knative-eventing ---
+[INFO] Building jar: /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/runtime/target/kie-addons-quarkus-knative-eventing-999-SNAPSHOT.jar
+[INFO] 
+[INFO] --- jar:3.2.0:test-jar (test-jar) @ kie-addons-quarkus-knative-eventing ---
+[INFO] Building jar: /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/runtime/target/kie-addons-quarkus-knative-eventing-999-SNAPSHOT-tests.jar
+[INFO] 
+[INFO] --- source:3.2.1:jar-no-fork (attach-sources) @ kie-addons-quarkus-knative-eventing ---
+[INFO] Building jar: /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/runtime/target/kie-addons-quarkus-knative-eventing-999-SNAPSHOT-sources.jar
+[INFO] 
+[INFO] --- source:3.2.1:test-jar-no-fork (attach-test-sources) @ kie-addons-quarkus-knative-eventing ---
+[INFO] Building jar: /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/runtime/target/kie-addons-quarkus-knative-eventing-999-SNAPSHOT-test-sources.jar
+[INFO] 
+[INFO] --- failsafe:3.2.5:integration-test (integration-test) @ kie-addons-quarkus-knative-eventing ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- failsafe:3.2.5:verify (integration-test) @ kie-addons-quarkus-knative-eventing ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- install:3.1.1:install (default-install) @ kie-addons-quarkus-knative-eventing ---
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/runtime/pom.xml to /home/dev/.m2/repository/org/kie/kie-addons-quarkus-knative-eventing/999-SNAPSHOT/kie-addons-quarkus-knative-eventing-999-SNAPSHOT.pom
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/runtime/target/kie-addons-quarkus-knative-eventing-999-SNAPSHOT.jar to /home/dev/.m2/repository/org/kie/kie-addons-quarkus-knative-eventing/999-SNAPSHOT/kie-addons-quarkus-knative-eventing-999-SNAPSHOT.jar
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/runtime/target/kie-addons-quarkus-knative-eventing-999-SNAPSHOT-tests.jar to /home/dev/.m2/repository/org/kie/kie-addons-quarkus-knative-eventing/999-SNAPSHOT/kie-addons-quarkus-knative-eventing-999-SNAPSHOT-tests.jar
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/runtime/target/kie-addons-quarkus-knative-eventing-999-SNAPSHOT-sources.jar to /home/dev/.m2/repository/org/kie/kie-addons-quarkus-knative-eventing/999-SNAPSHOT/kie-addons-quarkus-knative-eventing-999-SNAPSHOT-sources.jar
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/runtime/target/kie-addons-quarkus-knative-eventing-999-SNAPSHOT-test-sources.jar to /home/dev/.m2/repository/org/kie/kie-addons-quarkus-knative-eventing/999-SNAPSHOT/kie-addons-quarkus-knative-eventing-999-SNAPSHOT-test-sources.jar
+[INFO] 
+[INFO] -------< org.kie:kie-addons-quarkus-knative-eventing-deployment >-------
+[INFO] Building KIE Add-On Knative Eventing - Deployment 999-SNAPSHOT     [4/9]
+[INFO]   from eventing/deployment/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.1.0:clean (default-clean) @ kie-addons-quarkus-knative-eventing-deployment ---
+[INFO] Deleting /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/deployment/target
+[INFO] 
+[INFO] --- directory:1.0:highest-basedir (directories) @ kie-addons-quarkus-knative-eventing-deployment ---
+[INFO] Highest basedir set to: /home/dev/nrknithin/3-kogito-runtimes
+[INFO] 
+[INFO] --- enforcer:3.3.0:enforce (enforce-versions) @ kie-addons-quarkus-knative-eventing-deployment ---
+[INFO] 
+[INFO] --- enforcer:3.3.0:enforce (enforce-maven-version) @ kie-addons-quarkus-knative-eventing-deployment ---
+[INFO] 
+[INFO] --- enforcer:3.3.0:enforce (enforce-java-version) @ kie-addons-quarkus-knative-eventing-deployment ---
+[INFO] 
+[INFO] --- checkstyle:3.3.0:check (default) @ kie-addons-quarkus-knative-eventing-deployment ---
+[INFO] You have 0 Checkstyle violations.
+[INFO] 
+[INFO] --- formatter:2.13.0:format (default) @ kie-addons-quarkus-knative-eventing-deployment ---
+[INFO] Using 'UTF-8' encoding to format source files.
+[INFO] Number of files to be formatted: 12
+[INFO] Successfully formatted:          0 file(s)
+[INFO] Fail to format:                  0 file(s)
+[INFO] Skipped:                         12 file(s)
+[INFO] Read only skipped:               0 file(s)
+[INFO] Approximate time taken:          0s
+[INFO] 
+[INFO] --- impsort:1.8.0:sort (default) @ kie-addons-quarkus-knative-eventing-deployment ---
+[INFO] Processed 12 files in 00:00.162 (Already Sorted: 12, Needed Sorting: 0)
+[INFO] 
+[INFO] --- remote-resources:3.2.0:process (process-resource-bundles) @ kie-addons-quarkus-knative-eventing-deployment ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] 
+[INFO] --- resources:3.1.0:resources (default-resources) @ kie-addons-quarkus-knative-eventing-deployment ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/deployment/src/main/resources
+[INFO] Copying 3 resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ kie-addons-quarkus-knative-eventing-deployment ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 9 source files with javac [debug deprecation release 17] to target/classes
+[WARNING] /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/deployment/src/main/java/org/kie/kogito/addons/quarkus/knative/eventing/deployment/KogitoKnativeGenerator.java:[50,51] WRITE_NULL_MAP_VALUES in com.fasterxml.jackson.databind.SerializationFeature has been deprecated
+[WARNING] /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/deployment/src/main/java/org/kie/kogito/addons/quarkus/knative/eventing/deployment/KogitoKnativeGenerator.java:[51,51] WRITE_EMPTY_JSON_ARRAYS in com.fasterxml.jackson.databind.SerializationFeature has been deprecated
+[INFO] 
+[INFO] --- resources:3.1.0:testResources (default-testResources) @ kie-addons-quarkus-knative-eventing-deployment ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] Copying 3 resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ kie-addons-quarkus-knative-eventing-deployment ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 3 source files with javac [debug deprecation release 17] to target/test-classes
+[WARNING] /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/deployment/src/test/java/org/kie/kogito/addons/quarkus/knative/eventing/deployment/KogitoAddOnKnativeEventingProcessorTest.java:[128,68] unchecked conversion
+  required: io.quarkus.deployment.annotations.BuildProducer<io.quarkus.deployment.builditem.SystemPropertyBuildItem>
+  found:    io.quarkus.deployment.annotations.BuildProducer
+[WARNING] /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/deployment/src/test/java/org/kie/kogito/addons/quarkus/knative/eventing/deployment/KogitoAddOnKnativeEventingProcessorTest.java:[132,27] create(org.jboss.jandex.DotName,org.jboss.jandex.DotName,short,org.jboss.jandex.DotName[],java.util.Map<org.jboss.jandex.DotName,java.util.List<org.jboss.jandex.AnnotationInstance>>,boolean) in org.jboss.jandex.ClassInfo has been deprecated
+[WARNING] /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/deployment/src/test/java/org/kie/kogito/addons/quarkus/knative/eventing/deployment/KogitoAddOnKnativeEventingProcessorTest.java:[144,68] unchecked conversion
+  required: io.quarkus.deployment.annotations.BuildProducer<io.quarkus.deployment.builditem.SystemPropertyBuildItem>
+  found:    io.quarkus.deployment.annotations.BuildProducer
+[INFO] 
+[INFO] --- surefire:3.3.1:test (default-test) @ kie-addons-quarkus-knative-eventing-deployment ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.2.0:jar (default-jar) @ kie-addons-quarkus-knative-eventing-deployment ---
+[INFO] Building jar: /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/deployment/target/kie-addons-quarkus-knative-eventing-deployment-999-SNAPSHOT.jar
+[INFO] 
+[INFO] --- jar:3.2.0:test-jar (test-jar) @ kie-addons-quarkus-knative-eventing-deployment ---
+[INFO] Building jar: /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/deployment/target/kie-addons-quarkus-knative-eventing-deployment-999-SNAPSHOT-tests.jar
+[INFO] 
+[INFO] --- source:3.2.1:jar-no-fork (attach-sources) @ kie-addons-quarkus-knative-eventing-deployment ---
+[INFO] Building jar: /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/deployment/target/kie-addons-quarkus-knative-eventing-deployment-999-SNAPSHOT-sources.jar
+[INFO] 
+[INFO] --- source:3.2.1:test-jar-no-fork (attach-test-sources) @ kie-addons-quarkus-knative-eventing-deployment ---
+[INFO] Building jar: /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/deployment/target/kie-addons-quarkus-knative-eventing-deployment-999-SNAPSHOT-test-sources.jar
+[INFO] 
+[INFO] --- failsafe:3.2.5:integration-test (integration-test) @ kie-addons-quarkus-knative-eventing-deployment ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- failsafe:3.2.5:verify (integration-test) @ kie-addons-quarkus-knative-eventing-deployment ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- install:3.1.1:install (default-install) @ kie-addons-quarkus-knative-eventing-deployment ---
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/deployment/pom.xml to /home/dev/.m2/repository/org/kie/kie-addons-quarkus-knative-eventing-deployment/999-SNAPSHOT/kie-addons-quarkus-knative-eventing-deployment-999-SNAPSHOT.pom
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/deployment/target/kie-addons-quarkus-knative-eventing-deployment-999-SNAPSHOT.jar to /home/dev/.m2/repository/org/kie/kie-addons-quarkus-knative-eventing-deployment/999-SNAPSHOT/kie-addons-quarkus-knative-eventing-deployment-999-SNAPSHOT.jar
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/deployment/target/kie-addons-quarkus-knative-eventing-deployment-999-SNAPSHOT-tests.jar to /home/dev/.m2/repository/org/kie/kie-addons-quarkus-knative-eventing-deployment/999-SNAPSHOT/kie-addons-quarkus-knative-eventing-deployment-999-SNAPSHOT-tests.jar
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/deployment/target/kie-addons-quarkus-knative-eventing-deployment-999-SNAPSHOT-sources.jar to /home/dev/.m2/repository/org/kie/kie-addons-quarkus-knative-eventing-deployment/999-SNAPSHOT/kie-addons-quarkus-knative-eventing-deployment-999-SNAPSHOT-sources.jar
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/deployment/target/kie-addons-quarkus-knative-eventing-deployment-999-SNAPSHOT-test-sources.jar to /home/dev/.m2/repository/org/kie/kie-addons-quarkus-knative-eventing-deployment/999-SNAPSHOT/kie-addons-quarkus-knative-eventing-deployment-999-SNAPSHOT-test-sources.jar
+[INFO] 
+[INFO] ---< org.kie:kie-addons-quarkus-knative-eventing-integration-tests >----
+[INFO] Building KIE Add-On Knative Eventing - Integration Tests 999-SNAPSHOT [5/9]
+[INFO]   from eventing/integration-tests/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.1.0:clean (default-clean) @ kie-addons-quarkus-knative-eventing-integration-tests ---
+[INFO] Deleting /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/integration-tests/target
+[INFO] 
+[INFO] --- directory:1.0:highest-basedir (directories) @ kie-addons-quarkus-knative-eventing-integration-tests ---
+[INFO] Highest basedir set to: /home/dev/nrknithin/3-kogito-runtimes
+[INFO] 
+[INFO] --- enforcer:3.3.0:enforce (enforce-versions) @ kie-addons-quarkus-knative-eventing-integration-tests ---
+[INFO] 
+[INFO] --- enforcer:3.3.0:enforce (enforce-maven-version) @ kie-addons-quarkus-knative-eventing-integration-tests ---
+[INFO] 
+[INFO] --- enforcer:3.3.0:enforce (enforce-java-version) @ kie-addons-quarkus-knative-eventing-integration-tests ---
+[INFO] 
+[INFO] --- checkstyle:3.3.0:check (default) @ kie-addons-quarkus-knative-eventing-integration-tests ---
+[INFO] You have 0 Checkstyle violations.
+[INFO] 
+[INFO] --- formatter:2.13.0:format (default) @ kie-addons-quarkus-knative-eventing-integration-tests ---
+[INFO] Using 'UTF-8' encoding to format source files.
+[INFO] Number of files to be formatted: 6
+[INFO] Successfully formatted:          0 file(s)
+[INFO] Fail to format:                  0 file(s)
+[INFO] Skipped:                         6 file(s)
+[INFO] Read only skipped:               0 file(s)
+[INFO] Approximate time taken:          0s
+[INFO] 
+[INFO] --- impsort:1.8.0:sort (default) @ kie-addons-quarkus-knative-eventing-integration-tests ---
+[INFO] Processed 6 files in 00:00.025 (Already Sorted: 6, Needed Sorting: 0)
+[INFO] 
+[INFO] --- remote-resources:3.2.0:process (process-resource-bundles) @ kie-addons-quarkus-knative-eventing-integration-tests ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] 
+[INFO] --- resources:3.1.0:resources (default-resources) @ kie-addons-quarkus-knative-eventing-integration-tests ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] Copying 3 resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ kie-addons-quarkus-knative-eventing-integration-tests ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- resources:3.1.0:testResources (default-testResources) @ kie-addons-quarkus-knative-eventing-integration-tests ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/integration-tests/src/test/resources
+[INFO] Copying 3 resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ kie-addons-quarkus-knative-eventing-integration-tests ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 6 source files with javac [debug deprecation release 17] to target/test-classes
+[INFO] Annotation processing is enabled because one or more processors were found
+  on the class path. A future release of javac may disable annotation processing
+  unless at least one processor is specified by name (-processor), or a search
+  path is specified (--processor-path, --processor-module-path), or annotation
+  processing is enabled explicitly (-proc:only, -proc:full).
+  Use -Xlint:-options to suppress this message.
+  Use -proc:none to disable annotation processing.
+[INFO] 
+[INFO] --- surefire:3.3.1:test (default-test) @ kie-addons-quarkus-knative-eventing-integration-tests ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.2.0:jar (default-jar) @ kie-addons-quarkus-knative-eventing-integration-tests ---
+[INFO] Building jar: /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/integration-tests/target/kie-addons-quarkus-knative-eventing-integration-tests-999-SNAPSHOT.jar
+[INFO] 
+[INFO] --- jar:3.2.0:test-jar (test-jar) @ kie-addons-quarkus-knative-eventing-integration-tests ---
+[INFO] Building jar: /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/integration-tests/target/kie-addons-quarkus-knative-eventing-integration-tests-999-SNAPSHOT-tests.jar
+[INFO] 
+[INFO] --- source:3.2.1:jar-no-fork (attach-sources) @ kie-addons-quarkus-knative-eventing-integration-tests ---
+[INFO] Building jar: /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/integration-tests/target/kie-addons-quarkus-knative-eventing-integration-tests-999-SNAPSHOT-sources.jar
+[INFO] 
+[INFO] --- source:3.2.1:test-jar-no-fork (attach-test-sources) @ kie-addons-quarkus-knative-eventing-integration-tests ---
+[INFO] Building jar: /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/integration-tests/target/kie-addons-quarkus-knative-eventing-integration-tests-999-SNAPSHOT-test-sources.jar
+[INFO] 
+[INFO] --- quarkus:3.27.1:build (default) @ kie-addons-quarkus-knative-eventing-integration-tests ---
+[INFO] Skipping Quarkus build
+[INFO] 
+[INFO] --- failsafe:3.2.5:integration-test (integration-test) @ kie-addons-quarkus-knative-eventing-integration-tests ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- failsafe:3.2.5:verify (integration-test) @ kie-addons-quarkus-knative-eventing-integration-tests ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- install:3.1.1:install (default-install) @ kie-addons-quarkus-knative-eventing-integration-tests ---
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/integration-tests/pom.xml to /home/dev/.m2/repository/org/kie/kie-addons-quarkus-knative-eventing-integration-tests/999-SNAPSHOT/kie-addons-quarkus-knative-eventing-integration-tests-999-SNAPSHOT.pom
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/integration-tests/target/kie-addons-quarkus-knative-eventing-integration-tests-999-SNAPSHOT.jar to /home/dev/.m2/repository/org/kie/kie-addons-quarkus-knative-eventing-integration-tests/999-SNAPSHOT/kie-addons-quarkus-knative-eventing-integration-tests-999-SNAPSHOT.jar
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/integration-tests/target/kie-addons-quarkus-knative-eventing-integration-tests-999-SNAPSHOT-tests.jar to /home/dev/.m2/repository/org/kie/kie-addons-quarkus-knative-eventing-integration-tests/999-SNAPSHOT/kie-addons-quarkus-knative-eventing-integration-tests-999-SNAPSHOT-tests.jar
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/integration-tests/target/kie-addons-quarkus-knative-eventing-integration-tests-999-SNAPSHOT-sources.jar to /home/dev/.m2/repository/org/kie/kie-addons-quarkus-knative-eventing-integration-tests/999-SNAPSHOT/kie-addons-quarkus-knative-eventing-integration-tests-999-SNAPSHOT-sources.jar
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/eventing/integration-tests/target/kie-addons-quarkus-knative-eventing-integration-tests-999-SNAPSHOT-test-sources.jar to /home/dev/.m2/repository/org/kie/kie-addons-quarkus-knative-eventing-integration-tests/999-SNAPSHOT/kie-addons-quarkus-knative-eventing-integration-tests-999-SNAPSHOT-test-sources.jar
+[INFO] 
+[INFO] --------< org.kie:kogito-addons-quarkus-knative-serving-parent >--------
+[INFO] Building Kogito Add-On Knative Serving - Parent 999-SNAPSHOT       [6/9]
+[INFO]   from serving/pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.1.0:clean (default-clean) @ kogito-addons-quarkus-knative-serving-parent ---
+[INFO] Deleting /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/target
+[INFO] 
+[INFO] --- directory:1.0:highest-basedir (directories) @ kogito-addons-quarkus-knative-serving-parent ---
+[INFO] Highest basedir set to: /home/dev/nrknithin/3-kogito-runtimes
+[INFO] 
+[INFO] --- enforcer:3.3.0:enforce (enforce-versions) @ kogito-addons-quarkus-knative-serving-parent ---
+[INFO] 
+[INFO] --- enforcer:3.3.0:enforce (enforce-maven-version) @ kogito-addons-quarkus-knative-serving-parent ---
+[INFO] 
+[INFO] --- enforcer:3.3.0:enforce (enforce-java-version) @ kogito-addons-quarkus-knative-serving-parent ---
+[INFO] 
+[INFO] --- checkstyle:3.3.0:check (default) @ kogito-addons-quarkus-knative-serving-parent ---
+[INFO] You have 0 Checkstyle violations.
+[INFO] 
+[INFO] --- formatter:2.13.0:format (default) @ kogito-addons-quarkus-knative-serving-parent ---
+[INFO] Using 'UTF-8' encoding to format source files.
+[INFO] Number of files to be formatted: 0
+[INFO] 
+[INFO] --- impsort:1.8.0:sort (default) @ kogito-addons-quarkus-knative-serving-parent ---
+[INFO] Processed 0 files in 00:00.000 (Already Sorted: 0, Needed Sorting: 0)
+[INFO] 
+[INFO] --- remote-resources:3.2.0:process (process-resource-bundles) @ kogito-addons-quarkus-knative-serving-parent ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] 
+[INFO] --- jar:3.2.0:test-jar (test-jar) @ kogito-addons-quarkus-knative-serving-parent ---
+[INFO] Skipping packaging of the test-jar
+[INFO] 
+[INFO] --- source:3.2.1:jar-no-fork (attach-sources) @ kogito-addons-quarkus-knative-serving-parent ---
+[INFO] 
+[INFO] --- source:3.2.1:test-jar-no-fork (attach-test-sources) @ kogito-addons-quarkus-knative-serving-parent ---
+[INFO] 
+[INFO] --- failsafe:3.2.5:integration-test (integration-test) @ kogito-addons-quarkus-knative-serving-parent ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- failsafe:3.2.5:verify (integration-test) @ kogito-addons-quarkus-knative-serving-parent ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- install:3.1.1:install (default-install) @ kogito-addons-quarkus-knative-serving-parent ---
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/pom.xml to /home/dev/.m2/repository/org/kie/kogito-addons-quarkus-knative-serving-parent/999-SNAPSHOT/kogito-addons-quarkus-knative-serving-parent-999-SNAPSHOT.pom
+[INFO] 
+[INFO] -----------< org.kie:kogito-addons-quarkus-knative-serving >------------
+[INFO] Building Kogito Add-On Knative Serving 999-SNAPSHOT                [7/9]
+[INFO]   from serving/runtime/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+Downloading from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kie-addons-quarkus-kubernetes-deployment/999-SNAPSHOT/maven-metadata.xml
+Progress (1): 1.4 kB                    Downloaded from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kie-addons-quarkus-kubernetes-deployment/999-SNAPSHOT/maven-metadata.xml (1.4 kB at 3.8 kB/s)
+Downloading from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kie-addons-quarkus-kubernetes-deployment/999-SNAPSHOT/kie-addons-quarkus-kubernetes-deployment-999-20260115.015118-509.pom
+Progress (1): 3.0 kB                    Downloaded from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kie-addons-quarkus-kubernetes-deployment/999-SNAPSHOT/kie-addons-quarkus-kubernetes-deployment-999-20260115.015118-509.pom (3.0 kB at 16 kB/s)
+[INFO] 
+[INFO] --- clean:3.1.0:clean (default-clean) @ kogito-addons-quarkus-knative-serving ---
+[INFO] Deleting /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/runtime/target
+[INFO] 
+[INFO] --- directory:1.0:highest-basedir (directories) @ kogito-addons-quarkus-knative-serving ---
+[INFO] Highest basedir set to: /home/dev/nrknithin/3-kogito-runtimes
+[INFO] 
+[INFO] --- enforcer:3.3.0:enforce (enforce-versions) @ kogito-addons-quarkus-knative-serving ---
+[INFO] 
+[INFO] --- enforcer:3.3.0:enforce (enforce-maven-version) @ kogito-addons-quarkus-knative-serving ---
+[INFO] 
+[INFO] --- enforcer:3.3.0:enforce (enforce-java-version) @ kogito-addons-quarkus-knative-serving ---
+[INFO] 
+[INFO] --- checkstyle:3.3.0:check (default) @ kogito-addons-quarkus-knative-serving ---
+[INFO] You have 0 Checkstyle violations.
+[INFO] 
+[INFO] --- formatter:2.13.0:format (default) @ kogito-addons-quarkus-knative-serving ---
+[INFO] Using 'UTF-8' encoding to format source files.
+[INFO] Number of files to be formatted: 10
+[INFO] Successfully formatted:          0 file(s)
+[INFO] Fail to format:                  0 file(s)
+[INFO] Skipped:                         10 file(s)
+[INFO] Read only skipped:               0 file(s)
+[INFO] Approximate time taken:          0s
+[INFO] 
+[INFO] --- impsort:1.8.0:sort (default) @ kogito-addons-quarkus-knative-serving ---
+[INFO] Processed 10 files in 00:00.083 (Already Sorted: 10, Needed Sorting: 0)
+[INFO] 
+[INFO] --- remote-resources:3.2.0:process (process-resource-bundles) @ kogito-addons-quarkus-knative-serving ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] 
+[INFO] --- resources:3.1.0:resources (default-resources) @ kogito-addons-quarkus-knative-serving ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] Copying 3 resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ kogito-addons-quarkus-knative-serving ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 8 source files with javac [debug deprecation release 17] to target/classes
+[INFO] 
+[INFO] --- quarkus-extension:3.27.1:extension-descriptor (default) @ kogito-addons-quarkus-knative-serving ---
+Downloading from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kogito-addons-quarkus-knative-serving-deployment/999-SNAPSHOT/maven-metadata.xml
+Progress (1): 1.4 kB                    Downloaded from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kogito-addons-quarkus-knative-serving-deployment/999-SNAPSHOT/maven-metadata.xml (1.4 kB at 3.8 kB/s)
+[INFO] 
+[INFO] --- resources:3.1.0:testResources (default-testResources) @ kogito-addons-quarkus-knative-serving ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] Copying 3 resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ kogito-addons-quarkus-knative-serving ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 2 source files with javac [debug deprecation release 17] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.3.1:test (default-test) @ kogito-addons-quarkus-knative-serving ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.2.0:jar (default-jar) @ kogito-addons-quarkus-knative-serving ---
+[INFO] Building jar: /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/runtime/target/kogito-addons-quarkus-knative-serving-999-SNAPSHOT.jar
+[INFO] 
+[INFO] --- jar:3.2.0:test-jar (test-jar) @ kogito-addons-quarkus-knative-serving ---
+[INFO] Building jar: /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/runtime/target/kogito-addons-quarkus-knative-serving-999-SNAPSHOT-tests.jar
+[INFO] 
+[INFO] --- source:3.2.1:jar-no-fork (attach-sources) @ kogito-addons-quarkus-knative-serving ---
+[INFO] Building jar: /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/runtime/target/kogito-addons-quarkus-knative-serving-999-SNAPSHOT-sources.jar
+[INFO] 
+[INFO] --- source:3.2.1:test-jar-no-fork (attach-test-sources) @ kogito-addons-quarkus-knative-serving ---
+[INFO] Building jar: /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/runtime/target/kogito-addons-quarkus-knative-serving-999-SNAPSHOT-test-sources.jar
+[INFO] 
+[INFO] --- failsafe:3.2.5:integration-test (integration-test) @ kogito-addons-quarkus-knative-serving ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- failsafe:3.2.5:verify (integration-test) @ kogito-addons-quarkus-knative-serving ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- install:3.1.1:install (default-install) @ kogito-addons-quarkus-knative-serving ---
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/runtime/pom.xml to /home/dev/.m2/repository/org/kie/kogito-addons-quarkus-knative-serving/999-SNAPSHOT/kogito-addons-quarkus-knative-serving-999-SNAPSHOT.pom
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/runtime/target/kogito-addons-quarkus-knative-serving-999-SNAPSHOT.jar to /home/dev/.m2/repository/org/kie/kogito-addons-quarkus-knative-serving/999-SNAPSHOT/kogito-addons-quarkus-knative-serving-999-SNAPSHOT.jar
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/runtime/target/kogito-addons-quarkus-knative-serving-999-SNAPSHOT-tests.jar to /home/dev/.m2/repository/org/kie/kogito-addons-quarkus-knative-serving/999-SNAPSHOT/kogito-addons-quarkus-knative-serving-999-SNAPSHOT-tests.jar
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/runtime/target/kogito-addons-quarkus-knative-serving-999-SNAPSHOT-sources.jar to /home/dev/.m2/repository/org/kie/kogito-addons-quarkus-knative-serving/999-SNAPSHOT/kogito-addons-quarkus-knative-serving-999-SNAPSHOT-sources.jar
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/runtime/target/kogito-addons-quarkus-knative-serving-999-SNAPSHOT-test-sources.jar to /home/dev/.m2/repository/org/kie/kogito-addons-quarkus-knative-serving/999-SNAPSHOT/kogito-addons-quarkus-knative-serving-999-SNAPSHOT-test-sources.jar
+[INFO] 
+[INFO] ------< org.kie:kogito-addons-quarkus-knative-serving-deployment >------
+[INFO] Building Kogito Add-On Knative Serving - Deployment 999-SNAPSHOT   [8/9]
+[INFO]   from serving/deployment/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+Downloading from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kie-addons-quarkus-kubernetes-deployment/999-SNAPSHOT/kie-addons-quarkus-kubernetes-deployment-999-20260115.015118-509.jar
+Progress (1): 7.5/15 kBProgress (1): 8.2/15 kBProgress (1): 15 kB                       Downloaded from apache.snapshots: https://repository.apache.org/snapshots/org/kie/kie-addons-quarkus-kubernetes-deployment/999-SNAPSHOT/kie-addons-quarkus-kubernetes-deployment-999-20260115.015118-509.jar (15 kB at 43 kB/s)
+[INFO] 
+[INFO] --- clean:3.1.0:clean (default-clean) @ kogito-addons-quarkus-knative-serving-deployment ---
+[INFO] Deleting /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/deployment/target
+[INFO] 
+[INFO] --- directory:1.0:highest-basedir (directories) @ kogito-addons-quarkus-knative-serving-deployment ---
+[INFO] Highest basedir set to: /home/dev/nrknithin/3-kogito-runtimes
+[INFO] 
+[INFO] --- enforcer:3.3.0:enforce (enforce-versions) @ kogito-addons-quarkus-knative-serving-deployment ---
+[INFO] 
+[INFO] --- enforcer:3.3.0:enforce (enforce-maven-version) @ kogito-addons-quarkus-knative-serving-deployment ---
+[INFO] 
+[INFO] --- enforcer:3.3.0:enforce (enforce-java-version) @ kogito-addons-quarkus-knative-serving-deployment ---
+[INFO] 
+[INFO] --- checkstyle:3.3.0:check (default) @ kogito-addons-quarkus-knative-serving-deployment ---
+[INFO] You have 0 Checkstyle violations.
+[INFO] 
+[INFO] --- formatter:2.13.0:format (default) @ kogito-addons-quarkus-knative-serving-deployment ---
+[INFO] Using 'UTF-8' encoding to format source files.
+[INFO] Number of files to be formatted: 3
+[INFO] Successfully formatted:          0 file(s)
+[INFO] Fail to format:                  0 file(s)
+[INFO] Skipped:                         3 file(s)
+[INFO] Read only skipped:               0 file(s)
+[INFO] Approximate time taken:          0s
+[INFO] 
+[INFO] --- impsort:1.8.0:sort (default) @ kogito-addons-quarkus-knative-serving-deployment ---
+[INFO] Processed 3 files in 00:00.027 (Already Sorted: 3, Needed Sorting: 0)
+[INFO] 
+[INFO] --- remote-resources:3.2.0:process (process-resource-bundles) @ kogito-addons-quarkus-knative-serving-deployment ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] 
+[INFO] --- resources:3.1.0:resources (default-resources) @ kogito-addons-quarkus-knative-serving-deployment ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] Copying 3 resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ kogito-addons-quarkus-knative-serving-deployment ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 2 source files with javac [debug deprecation release 17] to target/classes
+[WARNING] /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/deployment/src/main/java/org/kie/kogito/addons/quarkus/knative/serving/deployment/KogitoAddonKnativeServingProcessor.java:[47,16] ReflectiveClassBuildItem(boolean,boolean,boolean,java.lang.Class<?>...) in io.quarkus.deployment.builditem.nativeimage.ReflectiveClassBuildItem has been deprecated and marked for removal
+[INFO] 
+[INFO] --- resources:3.1.0:testResources (default-testResources) @ kogito-addons-quarkus-knative-serving-deployment ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/deployment/src/test/resources
+[INFO] Copying 3 resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ kogito-addons-quarkus-knative-serving-deployment ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 1 source file with javac [debug deprecation release 17] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.3.1:test (default-test) @ kogito-addons-quarkus-knative-serving-deployment ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.2.0:jar (default-jar) @ kogito-addons-quarkus-knative-serving-deployment ---
+[INFO] Building jar: /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/deployment/target/kogito-addons-quarkus-knative-serving-deployment-999-SNAPSHOT.jar
+[INFO] 
+[INFO] --- jar:3.2.0:test-jar (test-jar) @ kogito-addons-quarkus-knative-serving-deployment ---
+[INFO] Building jar: /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/deployment/target/kogito-addons-quarkus-knative-serving-deployment-999-SNAPSHOT-tests.jar
+[INFO] 
+[INFO] --- source:3.2.1:jar-no-fork (attach-sources) @ kogito-addons-quarkus-knative-serving-deployment ---
+[INFO] Building jar: /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/deployment/target/kogito-addons-quarkus-knative-serving-deployment-999-SNAPSHOT-sources.jar
+[INFO] 
+[INFO] --- source:3.2.1:test-jar-no-fork (attach-test-sources) @ kogito-addons-quarkus-knative-serving-deployment ---
+[INFO] Building jar: /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/deployment/target/kogito-addons-quarkus-knative-serving-deployment-999-SNAPSHOT-test-sources.jar
+[INFO] 
+[INFO] --- failsafe:3.2.5:integration-test (integration-test) @ kogito-addons-quarkus-knative-serving-deployment ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- failsafe:3.2.5:verify (integration-test) @ kogito-addons-quarkus-knative-serving-deployment ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- install:3.1.1:install (default-install) @ kogito-addons-quarkus-knative-serving-deployment ---
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/deployment/pom.xml to /home/dev/.m2/repository/org/kie/kogito-addons-quarkus-knative-serving-deployment/999-SNAPSHOT/kogito-addons-quarkus-knative-serving-deployment-999-SNAPSHOT.pom
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/deployment/target/kogito-addons-quarkus-knative-serving-deployment-999-SNAPSHOT.jar to /home/dev/.m2/repository/org/kie/kogito-addons-quarkus-knative-serving-deployment/999-SNAPSHOT/kogito-addons-quarkus-knative-serving-deployment-999-SNAPSHOT.jar
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/deployment/target/kogito-addons-quarkus-knative-serving-deployment-999-SNAPSHOT-tests.jar to /home/dev/.m2/repository/org/kie/kogito-addons-quarkus-knative-serving-deployment/999-SNAPSHOT/kogito-addons-quarkus-knative-serving-deployment-999-SNAPSHOT-tests.jar
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/deployment/target/kogito-addons-quarkus-knative-serving-deployment-999-SNAPSHOT-sources.jar to /home/dev/.m2/repository/org/kie/kogito-addons-quarkus-knative-serving-deployment/999-SNAPSHOT/kogito-addons-quarkus-knative-serving-deployment-999-SNAPSHOT-sources.jar
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/deployment/target/kogito-addons-quarkus-knative-serving-deployment-999-SNAPSHOT-test-sources.jar to /home/dev/.m2/repository/org/kie/kogito-addons-quarkus-knative-serving-deployment/999-SNAPSHOT/kogito-addons-quarkus-knative-serving-deployment-999-SNAPSHOT-test-sources.jar
+[INFO] 
+[INFO] --< org.kie:kogito-addons-quarkus-knative-serving-integration-tests >---
+[INFO] Building Kogito Add-On Knative Serving - Integration Tests 999-SNAPSHOT [9/9]
+[INFO]   from serving/integration-tests/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.1.0:clean (default-clean) @ kogito-addons-quarkus-knative-serving-integration-tests ---
+[INFO] Deleting /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/integration-tests/target
+[INFO] 
+[INFO] --- directory:1.0:highest-basedir (directories) @ kogito-addons-quarkus-knative-serving-integration-tests ---
+[INFO] Highest basedir set to: /home/dev/nrknithin/3-kogito-runtimes
+[INFO] 
+[INFO] --- enforcer:3.3.0:enforce (enforce-versions) @ kogito-addons-quarkus-knative-serving-integration-tests ---
+[INFO] 
+[INFO] --- enforcer:3.3.0:enforce (enforce-maven-version) @ kogito-addons-quarkus-knative-serving-integration-tests ---
+[INFO] 
+[INFO] --- enforcer:3.3.0:enforce (enforce-java-version) @ kogito-addons-quarkus-knative-serving-integration-tests ---
+[INFO] 
+[INFO] --- checkstyle:3.3.0:check (default) @ kogito-addons-quarkus-knative-serving-integration-tests ---
+[INFO] You have 0 Checkstyle violations.
+[INFO] 
+[INFO] --- formatter:2.13.0:format (default) @ kogito-addons-quarkus-knative-serving-integration-tests ---
+[INFO] Using 'UTF-8' encoding to format source files.
+[INFO] Number of files to be formatted: 1
+[INFO] Successfully formatted:          0 file(s)
+[INFO] Fail to format:                  0 file(s)
+[INFO] Skipped:                         1 file(s)
+[INFO] Read only skipped:               0 file(s)
+[INFO] Approximate time taken:          0s
+[INFO] 
+[INFO] --- impsort:1.8.0:sort (default) @ kogito-addons-quarkus-knative-serving-integration-tests ---
+[INFO] Processed 1 files in 00:00.023 (Already Sorted: 1, Needed Sorting: 0)
+[INFO] 
+[INFO] --- remote-resources:3.2.0:process (process-resource-bundles) @ kogito-addons-quarkus-knative-serving-integration-tests ---
+[INFO] Preparing remote bundle org.apache.apache.resources:apache-jar-resource-bundle:1.5
+[INFO] Copying 3 resources from 1 bundle.
+[INFO] 
+[INFO] --- resources:3.1.0:resources (default-resources) @ kogito-addons-quarkus-knative-serving-integration-tests ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 18 resources
+[INFO] Copying 3 resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ kogito-addons-quarkus-knative-serving-integration-tests ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- resources:3.1.0:testResources (default-testResources) @ kogito-addons-quarkus-knative-serving-integration-tests ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] Copying 3 resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ kogito-addons-quarkus-knative-serving-integration-tests ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 1 source file with javac [debug deprecation release 17] to target/test-classes
+[INFO] Annotation processing is enabled because one or more processors were found
+  on the class path. A future release of javac may disable annotation processing
+  unless at least one processor is specified by name (-processor), or a search
+  path is specified (--processor-path, --processor-module-path), or annotation
+  processing is enabled explicitly (-proc:only, -proc:full).
+  Use -Xlint:-options to suppress this message.
+  Use -proc:none to disable annotation processing.
+[INFO] 
+[INFO] --- surefire:3.3.1:test (default-test) @ kogito-addons-quarkus-knative-serving-integration-tests ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.2.0:jar (default-jar) @ kogito-addons-quarkus-knative-serving-integration-tests ---
+[INFO] Building jar: /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/integration-tests/target/kogito-addons-quarkus-knative-serving-integration-tests-999-SNAPSHOT.jar
+[INFO] 
+[INFO] --- jar:3.2.0:test-jar (test-jar) @ kogito-addons-quarkus-knative-serving-integration-tests ---
+[INFO] Building jar: /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/integration-tests/target/kogito-addons-quarkus-knative-serving-integration-tests-999-SNAPSHOT-tests.jar
+[INFO] 
+[INFO] --- source:3.2.1:jar-no-fork (attach-sources) @ kogito-addons-quarkus-knative-serving-integration-tests ---
+[INFO] Building jar: /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/integration-tests/target/kogito-addons-quarkus-knative-serving-integration-tests-999-SNAPSHOT-sources.jar
+[INFO] 
+[INFO] --- source:3.2.1:test-jar-no-fork (attach-test-sources) @ kogito-addons-quarkus-knative-serving-integration-tests ---
+[INFO] Building jar: /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/integration-tests/target/kogito-addons-quarkus-knative-serving-integration-tests-999-SNAPSHOT-test-sources.jar
+[INFO] 
+[INFO] --- quarkus:3.27.1:build (default) @ kogito-addons-quarkus-knative-serving-integration-tests ---
+[INFO] Skipping Quarkus build
+[INFO] 
+[INFO] --- failsafe:3.2.5:integration-test (integration-test) @ kogito-addons-quarkus-knative-serving-integration-tests ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- failsafe:3.2.5:verify (integration-test) @ kogito-addons-quarkus-knative-serving-integration-tests ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- install:3.1.1:install (default-install) @ kogito-addons-quarkus-knative-serving-integration-tests ---
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/integration-tests/pom.xml to /home/dev/.m2/repository/org/kie/kogito-addons-quarkus-knative-serving-integration-tests/999-SNAPSHOT/kogito-addons-quarkus-knative-serving-integration-tests-999-SNAPSHOT.pom
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/integration-tests/target/kogito-addons-quarkus-knative-serving-integration-tests-999-SNAPSHOT.jar to /home/dev/.m2/repository/org/kie/kogito-addons-quarkus-knative-serving-integration-tests/999-SNAPSHOT/kogito-addons-quarkus-knative-serving-integration-tests-999-SNAPSHOT.jar
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/integration-tests/target/kogito-addons-quarkus-knative-serving-integration-tests-999-SNAPSHOT-tests.jar to /home/dev/.m2/repository/org/kie/kogito-addons-quarkus-knative-serving-integration-tests/999-SNAPSHOT/kogito-addons-quarkus-knative-serving-integration-tests-999-SNAPSHOT-tests.jar
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/integration-tests/target/kogito-addons-quarkus-knative-serving-integration-tests-999-SNAPSHOT-sources.jar to /home/dev/.m2/repository/org/kie/kogito-addons-quarkus-knative-serving-integration-tests/999-SNAPSHOT/kogito-addons-quarkus-knative-serving-integration-tests-999-SNAPSHOT-sources.jar
+[INFO] Installing /home/dev/nrknithin/3-kogito-runtimes/quarkus/addons/knative/serving/integration-tests/target/kogito-addons-quarkus-knative-serving-integration-tests-999-SNAPSHOT-test-sources.jar to /home/dev/.m2/repository/org/kie/kogito-addons-quarkus-knative-serving-integration-tests/999-SNAPSHOT/kogito-addons-quarkus-knative-serving-integration-tests-999-SNAPSHOT-test-sources.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for Kogito Add-On Knative - Parent 999-SNAPSHOT:
+[INFO] 
+[INFO] Kogito Add-On Knative - Parent ..................... SUCCESS [  1.954 s]
+[INFO] KIE Add-On Knative Eventing - Parent ............... SUCCESS [  0.074 s]
+[INFO] KIE Add-On Knative Eventing ........................ SUCCESS [ 12.942 s]
+[INFO] KIE Add-On Knative Eventing - Deployment ........... SUCCESS [  5.078 s]
+[INFO] KIE Add-On Knative Eventing - Integration Tests .... SUCCESS [  3.956 s]
+[INFO] Kogito Add-On Knative Serving - Parent ............. SUCCESS [  0.039 s]
+[INFO] Kogito Add-On Knative Serving ...................... SUCCESS [  3.629 s]
+[INFO] Kogito Add-On Knative Serving - Deployment ......... SUCCESS [  2.726 s]
+[INFO] Kogito Add-On Knative Serving - Integration Tests .. SUCCESS [  3.579 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  34.710 s
+[INFO] Finished at: 2026-01-15T19:22:41-08:00
+[INFO] ------------------------------------------------------------------------

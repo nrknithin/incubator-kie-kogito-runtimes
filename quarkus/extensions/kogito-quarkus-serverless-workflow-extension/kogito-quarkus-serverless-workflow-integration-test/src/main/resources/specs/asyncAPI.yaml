@@ -27,10 +27,10 @@ info:
   description: Kafka Application
   license:
     name: Apache 2.0
-    url: 'https://www.apache.org/licenses/LICENSE-2.0'
+    url: "https://www.apache.org/licenses/LICENSE-2.0"
 servers:
   production:
-    host: 'localhost:9092'
+    host: "localhost:9092"
     protocol: kafka
     protocolVersion: 1.0.0
     description: Development server
@@ -39,25 +39,25 @@ channels:
     address: wait
     messages:
       sendWait.message:
-        $ref: '#/components/messages/message'
+        $ref: "#/components/messages/message"
       wait.message:
-        $ref: '#/components/messages/message'
+        $ref: "#/components/messages/message"
     description: A message channel
 operations:
   sendWait:
     action: send
     channel:
-      $ref: '#/channels/wait'
+      $ref: "#/channels/wait"
     summary: Send messages
     messages:
-      - $ref: '#/channels/wait/messages/sendWait.message'
+      - $ref: "#/channels/wait/messages/sendWait.message"
   wait:
     action: receive
     channel:
-      $ref: '#/channels/wait'
+      $ref: "#/channels/wait"
     summary: Get messages
     messages:
-      - $ref: '#/channels/wait/messages/wait.message'
+      - $ref: "#/channels/wait/messages/wait.message"
 components:
   messages:
     message:
@@ -66,7 +66,7 @@ components:
       summary: A message
       contentType: application/json
       payload:
-        $ref: '#/components/schemas/message'
+        $ref: "#/components/schemas/message"
   schemas:
     message:
       type: object
