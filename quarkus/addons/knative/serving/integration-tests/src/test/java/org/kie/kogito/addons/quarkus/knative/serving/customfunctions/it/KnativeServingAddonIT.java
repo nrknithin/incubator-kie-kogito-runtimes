@@ -52,6 +52,7 @@ import static org.kie.kogito.addons.quarkus.k8s.test.utils.KubeTestUtils.createK
 import static org.kie.kogito.addons.quarkus.knative.serving.customfunctions.KnativeWorkItemHandler.APPLICATION_CLOUDEVENTS_JSON_CHARSET_UTF_8;
 
 @QuarkusTest
+// Quarkus 3.27.2 upgrade: Fabric8 7.x - replaced @WithKubernetesTestServer with @QuarkusTestResource
 @QuarkusTestResource(KubernetesMockServerTestResource.class)
 class KnativeServingAddonIT {
 

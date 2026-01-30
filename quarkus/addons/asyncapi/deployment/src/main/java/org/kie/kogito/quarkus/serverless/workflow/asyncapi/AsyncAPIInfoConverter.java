@@ -28,6 +28,7 @@ import org.kie.kogito.serverless.workflow.asyncapi.AsyncChannelInfo;
 import org.kie.kogito.serverless.workflow.asyncapi.AsyncInfo;
 import org.kie.kogito.serverless.workflow.asyncapi.AsyncInfoConverter;
 
+// Updated to AsyncAPI v3.0.0 (from v2.6.0) as part of Quarkus 3.27.2 upgrade
 import com.asyncapi.v3._0_0.model.AsyncAPI;
 import com.asyncapi.v3._0_0.model.channel.Channel;
 import com.asyncapi.v3._0_0.model.operation.Operation;
@@ -51,6 +52,9 @@ public class AsyncAPIInfoConverter implements AsyncInfoConverter {
     private static AsyncInfo from(AsyncAPI asyncApi) {
         Map<String, AsyncChannelInfo> map = new HashMap<>();
 
+        // AsyncAPI v3.0.0 migration: In v3, channels and operations are separate top-level objects
+        // v2: channels contained publish/subscribe operations directly
+        // v3: operations reference channels via $ref, and channels have addresses
         // Build a helper map: channelId -> address (topic/path)
         Map<String, String> channelIdToAddress = new HashMap<>();
         if (asyncApi.getChannels() != null) {
@@ -90,6 +94,7 @@ public class AsyncAPIInfoConverter implements AsyncInfoConverter {
                 OperationAction action = op.getAction();
 
                 if (operationId != null && address != null && action != null) {
+                    // AsyncAPI v3.0.0: action is now OperationAction enum (SEND/RECEIVE) instead of v2's publish/subscribe
                     boolean publish = action == OperationAction.SEND; // send -> we publish, receive -> we consume
                     String channelName = publish ? address + "_out" : address;
                     map.putIfAbsent(operationId, new AsyncChannelInfo(channelName, publish));

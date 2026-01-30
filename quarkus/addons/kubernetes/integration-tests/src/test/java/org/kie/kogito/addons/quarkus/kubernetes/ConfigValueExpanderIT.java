@@ -31,6 +31,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.kie.kogito.addons.quarkus.k8s.test.utils.KubeTestUtils.createKnativeServiceIfNotExists;
 
 @QuarkusIntegrationTest
+// Quarkus 3.27.2 upgrade: Fabric8 7.x - replaced @WithKubernetesTestServer with @QuarkusTestResource
 @QuarkusTestResource(KubernetesMockServerTestResource.class)
 class ConfigValueExpanderIT {
 

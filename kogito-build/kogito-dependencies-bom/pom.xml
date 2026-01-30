@@ -43,7 +43,7 @@
     <version.io.quarkus>3.27.2</version.io.quarkus>
     <version.io.quarkus.quarkus-test>${version.io.quarkus}</version.io.quarkus.quarkus-test>
     <version.org.springframework>6.2.15</version.org.springframework>
-    <version.org.springframework.boot>3.5.9</version.org.springframework.boot>
+    <version.org.springframework.boot>3.5.10</version.org.springframework.boot>
     <version.org.apache.kafka>4.0.0</version.org.apache.kafka>
 
     <version.org.bouncycastle.bc.jdk18on>1.82</version.org.bouncycastle.bc.jdk18on>
@@ -135,7 +135,7 @@
     <version.org.postgres>16.8-alpine3.21</version.org.postgres>
     <!-- we align to version used by quarkus -->
     <version.org.apache.avro>1.12.0</version.org.apache.avro>
-    <version.org.assertj>3.27.3</version.org.assertj>
+    <version.org.assertj>3.27.7</version.org.assertj>
     <version.org.glassfish.jaxb>4.0.6</version.org.glassfish.jaxb>
     <version.org.json-unit-assertj>2.9.0</version.org.json-unit-assertj>
     <version.org.hamcrest>2.2</version.org.hamcrest> <!-- else old version coming from Mockito wins and breaks tests -->
@@ -170,7 +170,7 @@
     <version.apache.commons.commons-compress>1.28.0</version.apache.commons.commons-compress>
 
     <version.tomcat.embed.core>10.1.48</version.tomcat.embed.core>
-    <version.at.yawk.lz4.java>1.10.1</version.at.yawk.lz4.java>
+    <version.at.yawk.lz4.java>1.10.1</version.at.yawk.lz4.java> <!-- Upgraded for CVE fix (The library has moved from org.lz4:lz4-java to at.yawk.lz4:lz4-java )-->
   </properties>
 
   <dependencyManagement>

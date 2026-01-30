@@ -28,6 +28,11 @@ import io.quarkus.test.common.QuarkusTestResourceLifecycleManager;
 
 /**
  * Quarkus test resource that provides a Fabric8 Kubernetes mock server with CRUD support.
+ *
+ * Quarkus 3.27.2 upgrade: Updated for Fabric8 Kubernetes Client 7.x API changes:
+ * - KubernetesServer replaced with KubernetesMockServer
+ * - before()/after() replaced with init()/destroy()
+ * - Client creation now via createClient() method
  */
 public class KubernetesMockServerTestResource implements QuarkusTestResourceLifecycleManager {
 

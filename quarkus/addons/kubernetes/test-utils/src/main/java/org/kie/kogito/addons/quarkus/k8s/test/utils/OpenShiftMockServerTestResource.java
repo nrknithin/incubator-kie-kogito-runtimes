@@ -24,6 +24,13 @@ import io.fabric8.openshift.client.OpenShiftClient;
 import io.fabric8.openshift.client.server.mock.OpenShiftMockServer;
 import io.quarkus.test.common.QuarkusTestResourceLifecycleManager;
 
+/**
+ * Quarkus 3.27.2 upgrade: Updated for Fabric8 Kubernetes Client 7.x API changes:
+ * - OpenShiftServer replaced with OpenShiftMockServer
+ * - before()/after() replaced with init()/destroy()
+ * - Client creation via createOpenShiftClient() and exposed via getClient() for test injection
+ * - Tests now use @QuarkusTestResource instead of @WithKubernetesTestServer/@KubernetesTestServer
+ */
 public class OpenShiftMockServerTestResource implements QuarkusTestResourceLifecycleManager {
 
     private OpenShiftMockServer server;
