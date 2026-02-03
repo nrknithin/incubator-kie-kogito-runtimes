@@ -37,13 +37,14 @@ import io.quarkus.test.common.QuarkusTestResourceLifecycleManager;
 public class KubernetesMockServerTestResource implements QuarkusTestResourceLifecycleManager {
 
     private static final String TEST_NAMESPACE = "serverless-workflow-greeting-quarkus";
-    private KubernetesMockServer server;
+    private static KubernetesMockServer server;
     private KubernetesClient client;
 
     @Override
     public Map<String, String> start() {
         // Create mock server with CRUD mode enabled (Fabric8 7.x)
-        server = new KubernetesMockServer(false);
+        // CRUD mode must be TRUE to support Knative CRDs and custom resources
+        server = new KubernetesMockServer(true);
         server.init();
 
         // Create client from the mock server
@@ -67,13 +68,14 @@ public class KubernetesMockServerTestResource implements QuarkusTestResourceLife
         }
         if (server != null) {
             server.destroy();
+            server = null;
         }
     }
 
     /**
      * Expose the Fabric8 Kubernetes mock server instance for advanced use in tests.
-     */
-    public KubernetesMockServer getServer() {
+    */
+    public static KubernetesMockServer getServer() {
         return server;
     }
 
