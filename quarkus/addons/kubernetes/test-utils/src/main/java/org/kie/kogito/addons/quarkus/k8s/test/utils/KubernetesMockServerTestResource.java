@@ -23,16 +23,16 @@ import java.util.Map;
 
 import io.fabric8.kubernetes.client.Config;
 import io.fabric8.kubernetes.client.KubernetesClient;
+import io.fabric8.kubernetes.client.server.mock.KubernetesCrudDispatcher;
 import io.fabric8.kubernetes.client.server.mock.KubernetesMockServer;
+import io.fabric8.mockwebserver.MockWebServer;
 import io.quarkus.test.common.QuarkusTestResourceLifecycleManager;
 
 /**
  * Quarkus test resource that provides a Fabric8 Kubernetes mock server with CRUD support.
  *
- * Quarkus 3.27.2 upgrade: Updated for Fabric8 Kubernetes Client 7.x API changes:
- * - KubernetesServer replaced with KubernetesMockServer
- * - before()/after() replaced with init()/destroy()
- * - Client creation now via createClient() method
+ * Fabric8 7.x: The single-boolean constructor is useHttps, not crudMode.
+ * CRUD mode requires passing a KubernetesCrudDispatcher explicitly.
  */
 public class KubernetesMockServerTestResource implements QuarkusTestResourceLifecycleManager {
 
@@ -42,16 +42,17 @@ public class KubernetesMockServerTestResource implements QuarkusTestResourceLife
 
     @Override
     public Map<String, String> start() {
-        // Create mock server with CRUD mode enabled (Fabric8 7.x)
-        // CRUD mode must be TRUE to support Knative CRDs and custom resources
-        server = new KubernetesMockServer(true);
+        server = new KubernetesMockServer(
+                new io.fabric8.mockwebserver.Context(),
+                new MockWebServer(),
+                new HashMap<>(),
+                new KubernetesCrudDispatcher(),
+                false);
         server.init();
 
-        // Create client from the mock server
         client = server.createClient();
         String mockServerUrl = client.getConfiguration().getMasterUrl();
 
-        // Ensure the Fabric8 client picks up the mock server
         System.setProperty(Config.KUBERNETES_MASTER_SYSTEM_PROPERTY, mockServerUrl);
 
         Map<String, String> config = new HashMap<>();
@@ -72,16 +73,10 @@ public class KubernetesMockServerTestResource implements QuarkusTestResourceLife
         }
     }
 
-    /**
-     * Expose the Fabric8 Kubernetes mock server instance for advanced use in tests.
-     */
     public static KubernetesMockServer getServer() {
         return server;
     }
 
-    /**
-     * Get the Kubernetes client connected to the mock server.
-     */
     public KubernetesClient getClient() {
         return client;
     }

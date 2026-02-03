@@ -72,5 +72,3 @@ public class ConfigValueExpanderTestResource extends KubernetesMockServerTestRes
         return config;
     }
 }
-
-// Made with Bob

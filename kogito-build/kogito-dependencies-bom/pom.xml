@@ -88,7 +88,7 @@
     Kubernetes addons since they use a different version.
     -->
     <version.io.fabric8.kubernetes-client>7.3.1</version.io.fabric8.kubernetes-client>
-    <version.io.fabric8.openshift-mock>6.13.5</version.io.fabric8.openshift-mock>
+    <!-- openshift-server-mock removed in Fabric8 7.x, use kubernetes-server-mock instead -->
     <version.io.micrometer>1.14.12</version.io.micrometer>
     <version.org.flywaydb>11.14.1</version.org.flywaydb>
     <version.org.postgresql>42.7.8</version.org.postgresql>
@@ -828,12 +828,7 @@
         <version>${version.io.fabric8.kubernetes-client}</version>
       </dependency>
 
-      <!-- fabric8 - openshift mock server -->
-      <dependency>
-        <groupId>io.fabric8</groupId>
-        <artifactId>openshift-server-mock</artifactId>
-        <version>${version.io.fabric8.openshift-mock}</version>
-      </dependency>
+      <!-- fabric8 - openshift mock server removed in Fabric8 7.x, use kubernetes-server-mock instead -->
 
       <dependency>
         <groupId>org.junit.jupiter</groupId>

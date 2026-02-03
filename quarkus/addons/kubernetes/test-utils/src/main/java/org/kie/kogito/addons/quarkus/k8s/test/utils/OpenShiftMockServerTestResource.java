@@ -18,53 +18,62 @@
  */
 package org.kie.kogito.addons.quarkus.k8s.test.utils;
 
+import java.util.HashMap;
 import java.util.Map;
 
+import io.fabric8.kubernetes.client.KubernetesClient;
+import io.fabric8.kubernetes.client.server.mock.KubernetesCrudDispatcher;
+import io.fabric8.kubernetes.client.server.mock.KubernetesMockServer;
+import io.fabric8.mockwebserver.MockWebServer;
 import io.fabric8.openshift.client.OpenShiftClient;
-import io.fabric8.openshift.client.server.mock.OpenShiftMockServer;
 import io.quarkus.test.common.QuarkusTestResourceLifecycleManager;
 
 /**
- * Quarkus 3.27.2 upgrade: Updated for Fabric8 Kubernetes Client 7.x API changes:
- * - OpenShiftServer replaced with OpenShiftMockServer
- * - before()/after() replaced with init()/destroy()
- * - Client creation via createOpenShiftClient() and exposed via getClient() for test injection
- * - Tests now use @QuarkusTestResource instead of @WithKubernetesTestServer/@KubernetesTestServer
+ * Fabric8 7.x: OpenShiftMockServer was removed. Uses KubernetesMockServer with
+ * KubernetesCrudDispatcher for CRUD mode and client.adapt(OpenShiftClient.class).
  */
 public class OpenShiftMockServerTestResource implements QuarkusTestResourceLifecycleManager {
 
-    private OpenShiftMockServer server;
-    private OpenShiftClient client;
+    private KubernetesMockServer server;
+    private KubernetesClient kubernetesClient;
+    private OpenShiftClient openShiftClient;
 
     @Override
     public Map<String, String> start() {
-        // Create and start the OpenShift mock server (no-arg constructor for Fabric8 7.x)
-        server = new OpenShiftMockServer();
+        server = new KubernetesMockServer(
+                new io.fabric8.mockwebserver.Context(),
+                new MockWebServer(),
+                new HashMap<>(),
+                new KubernetesCrudDispatcher(),
+                false);
         server.init();
 
-        // Create client from the mock server
-        client = server.createOpenShiftClient();
+        kubernetesClient = server.createClient();
+        openShiftClient = kubernetesClient.adapt(OpenShiftClient.class);
 
         return Map.of(
-                "quarkus.kubernetes-client.master-url", client.getMasterUrl().toString(),
+                "quarkus.kubernetes-client.master-url", kubernetesClient.getConfiguration().getMasterUrl(),
                 "quarkus.kubernetes-client.trust-certs", "true");
     }
 
     @Override
     public void stop() {
-        if (client != null) {
-            client.close();
+        if (openShiftClient != null) {
+            openShiftClient.close();
+        }
+        if (kubernetesClient != null) {
+            kubernetesClient.close();
         }
         if (server != null) {
             server.destroy();
         }
     }
 
-    public OpenShiftMockServer getServer() {
+    public KubernetesMockServer getServer() {
         return server;
     }
 
     public OpenShiftClient getClient() {
-        return client;
+        return openShiftClient;
     }
 }
