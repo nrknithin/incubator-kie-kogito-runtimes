@@ -18,6 +18,8 @@
  */
 package org.kie.kogito.addons.quarkus.k8s.config;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URI;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -25,7 +27,9 @@ import org.junit.jupiter.api.Test;
 import org.kie.kogito.addons.k8s.resource.catalog.KubernetesServiceCatalog;
 import org.kie.kogito.addons.quarkus.k8s.test.utils.KubernetesMockServerTestResource;
 
+import io.fabric8.knative.serving.v1.Service;
 import io.fabric8.kubernetes.client.KubernetesClient;
+import io.fabric8.kubernetes.client.utils.Serialization;
 import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.junit.QuarkusTest;
 
