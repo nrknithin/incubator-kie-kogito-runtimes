@@ -88,7 +88,10 @@
     Kubernetes addons since they use a different version.
     -->
     <version.io.fabric8.kubernetes-client>7.3.1</version.io.fabric8.kubernetes-client>
-    <!-- openshift-server-mock removed in Fabric8 7.x, use kubernetes-server-mock instead -->
+    <!-- Quarkus 3.27.2 upgrade: version.io.fabric8.openshift-mock property removed.
+         The openshift-server-mock artifact was removed in Fabric8 7.x (see MIGRATION-v7.md).
+         Use io.fabric8:kubernetes-server-mock instead, which is already declared below
+         at version ${version.io.fabric8.kubernetes-client}. -->
     <version.io.micrometer>1.14.12</version.io.micrometer>
     <version.org.flywaydb>11.14.1</version.org.flywaydb>
     <version.org.postgresql>42.7.8</version.org.postgresql>
@@ -828,7 +831,9 @@
         <version>${version.io.fabric8.kubernetes-client}</version>
       </dependency>
 
-      <!-- fabric8 - openshift mock server removed in Fabric8 7.x, use kubernetes-server-mock instead -->
+      <!-- Quarkus 3.27.2 upgrade: Removed io.fabric8:openshift-server-mock dependency.
+           The artifact was removed in Fabric8 7.x. Use io.fabric8:kubernetes-server-mock (above)
+           with KubernetesMockServer + client.adapt(OpenShiftClient.class) instead of OpenShiftMockServer. -->
 
       <dependency>
         <groupId>org.junit.jupiter</groupId>
