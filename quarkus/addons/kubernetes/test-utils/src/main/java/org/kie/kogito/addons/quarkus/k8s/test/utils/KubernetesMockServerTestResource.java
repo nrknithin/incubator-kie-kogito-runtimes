@@ -74,7 +74,7 @@ public class KubernetesMockServerTestResource implements QuarkusTestResourceLife
 
     /**
      * Expose the Fabric8 Kubernetes mock server instance for advanced use in tests.
-    */
+     */
     public static KubernetesMockServer getServer() {
         return server;
     }
