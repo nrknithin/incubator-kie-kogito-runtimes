@@ -31,10 +31,10 @@ import io.fabric8.kubernetes.client.dsl.Resource;
 /**
  * Quarkus 3.27.2 / Fabric8 7.3.1 upgrade:
  * - Fabric8 7.x CRUD-mode mock server auto-handles standard CRUD operations, but status
- *   sub-resources require explicit patch calls (patchStatus()).
+ * sub-resources require explicit patch calls (patchStatus()).
  * - createOr() replaces createOrReplace() which was removed in Fabric8 7.x.
  * - createKnativeServiceIfNotExists() checks existence before creating to avoid 409 Conflict
- *   errors when CRUD-mode mock server persists resources across test methods.
+ * errors when CRUD-mode mock server persists resources across test methods.
  */
 public final class KubeTestUtils {
 

@@ -31,9 +31,9 @@ import static org.hamcrest.CoreMatchers.is;
  * - @QuarkusIntegrationTest runs the application in a separate JVM, so @Inject is not supported.
  * - Removed @Inject KubernetesClient and @BeforeEach that created the Knative service.
  * - Switched from KubernetesMockServerTestResource to ConfigValueExpanderTestResource,
- *   which creates the Knative service in its start() method before the application boots.
+ * which creates the Knative service in its start() method before the application boots.
  * - This ensures the mock Knative service is available when the application resolves
- *   config values during startup.
+ * config values during startup.
  */
 @QuarkusIntegrationTest
 @QuarkusTestResource(ConfigValueExpanderTestResource.class)
