@@ -18,34 +18,26 @@
  */
 package org.kie.kogito.addons.quarkus.kubernetes;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.kie.kogito.addons.quarkus.k8s.test.utils.KubernetesMockServerTestResource;
 
-import io.fabric8.kubernetes.client.KubernetesClient;
 import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.junit.QuarkusIntegrationTest;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
-import static org.kie.kogito.addons.quarkus.k8s.test.utils.KubeTestUtils.createKnativeServiceIfNotExists;
 
+/**
+ * Quarkus 3.27.2 / Fabric8 7.x upgrade:
+ * - @QuarkusIntegrationTest runs the application in a separate JVM, so @Inject is not supported.
+ * - Removed @Inject KubernetesClient and @BeforeEach that created the Knative service.
+ * - Switched from KubernetesMockServerTestResource to ConfigValueExpanderTestResource,
+ *   which creates the Knative service in its start() method before the application boots.
+ * - This ensures the mock Knative service is available when the application resolves
+ *   config values during startup.
+ */
 @QuarkusIntegrationTest
-// Quarkus 3.27.2 upgrade: Fabric8 7.x - replaced @WithKubernetesTestServer with @QuarkusTestResource
-@QuarkusTestResource(KubernetesMockServerTestResource.class)
+@QuarkusTestResource(ConfigValueExpanderTestResource.class)
 class ConfigValueExpanderIT {
-
-    private static final String NAMESPACE = "default";
-
-    private static final String SERVICENAME = "serverless-workflow-greeting-quarkus";
-
-    @jakarta.inject.Inject
-    KubernetesClient kubernetesClient;
-
-    @BeforeEach
-    void beforeEach() {
-        createKnativeServiceIfNotExists(kubernetesClient, "knative/quarkus-greeting.yaml", NAMESPACE, SERVICENAME);
-    }
 
     @Test
     void test() {
