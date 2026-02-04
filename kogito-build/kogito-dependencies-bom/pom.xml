@@ -53,7 +53,9 @@
     <version.com.fasterxml.jackson>2.19.2</version.com.fasterxml.jackson>
     <version.com.fasterxml.jackson.databind>2.19.2</version.com.fasterxml.jackson.databind>
     <version.com.jayway.jsonpath>2.9.0</version.com.jayway.jsonpath>
-    <version.com.ongres.scram>2.1</version.com.ongres.scram>
+    <!-- Quarkus 3.27.2 upgrade: Vert.x 4.5.23 requires scram-client 3.2 (not client 2.1).
+         The artifact was renamed from com.ongres.scram:client (2.x) to com.ongres.scram:scram-client (3.x). -->
+    <version.com.ongres.scram>3.2</version.com.ongres.scram>
     <version.net.minidev.jsonsmart>2.4.10</version.net.minidev.jsonsmart>
     <version.net.thisptr.jackson-jq>1.0.0-preview.20240207</version.net.thisptr.jackson-jq>
     <version.io.quarkiverse.jackson-jq>2.4.0</version.io.quarkiverse.jackson-jq>
@@ -979,10 +981,12 @@
         <version>${version.org.wiremock}</version>
         <scope>test</scope>
       </dependency>
-      <!-- SCRAM authentication support for PostgreSQL 16+ - removed test scope for runtime availability -->
+      <!-- Quarkus 3.27.2 / Vert.x 4.5.23 upgrade: SCRAM authentication for PostgreSQL 16+.
+           Artifact renamed from com.ongres.scram:client (2.x) to com.ongres.scram:scram-client (3.x).
+           Vert.x 4.5.23 was compiled against scram-client 3.2 API (ScramClient$MechanismsBuildStage). -->
       <dependency>
         <groupId>com.ongres.scram</groupId>
-        <artifactId>client</artifactId>
+        <artifactId>scram-client</artifactId>
         <version>${version.com.ongres.scram}</version>
       </dependency>
 
