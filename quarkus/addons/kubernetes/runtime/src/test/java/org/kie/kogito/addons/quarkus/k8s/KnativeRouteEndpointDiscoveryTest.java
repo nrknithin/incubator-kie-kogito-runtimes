@@ -36,7 +36,6 @@ import io.fabric8.knative.serving.v1.Route;
 import io.fabric8.knative.serving.v1.RouteBuilder;
 import io.fabric8.knative.serving.v1.RouteStatus;
 import io.fabric8.kubernetes.client.KubernetesClient;
-import io.fabric8.kubernetes.client.server.mock.KubernetesMockServer;
 import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.junit.QuarkusTest;
 
@@ -65,7 +64,7 @@ public class KnativeRouteEndpointDiscoveryTest {
         final KnativeRouteEndpointDiscovery endpointDiscovery = new KnativeRouteEndpointDiscovery(null);
         endpointDiscovery.setKnativeClient(knativeClient);
 
-        // Configure mock route with status
+        // configure mock
         final RouteStatus status = new RouteStatus();
         status.setUrl("http://192.168.2.32");
         final Route route = new RouteBuilder()
@@ -73,28 +72,7 @@ public class KnativeRouteEndpointDiscoveryTest {
                 .withStatus(status)
                 .build();
 
-        // FABRIC8 7.X COMPATIBILITY: Access mock server via static method instead of CDI injection
-        // Reason: QuarkusTestResource doesn't make managed objects available as CDI beans.
-        // Previously used: @Inject KubernetesMockServer mockServer (which caused "Unsatisfied dependency" errors)
-        // Now using: KubernetesMockServerTestResource.getServer() static method
-        KubernetesMockServer mockServer = KubernetesMockServerTestResource.getServer();
-
-        // FABRIC8 7.X COMPATIBILITY: Configure mock expectations using expect() API
-        // Reason: Fabric8 7.x requires explicit mock server expectations for all HTTP operations.
-        // The mock server no longer automatically handles resource creation without expectations.
-        mockServer.expect().post()
-                .withPath("/apis/serving.knative.dev/v1/namespaces/test/routes")
-                .andReturn(201, route)
-                .once();
-
-        // FABRIC8 7.X COMPATIBILITY: Use always() for GET operations that may be called multiple times
-        // Reason: The test may query the route multiple times during endpoint discovery.
-        mockServer.expect().get()
-                .withPath("/apis/serving.knative.dev/v1/namespaces/test/routes/ksvc1")
-                .andReturn(200, new RouteBuilder(route).withStatus(status).build())
-                .always();
-
-        kubernetesClient.resource(route).inNamespace("test").create();
+        knativeClient.routes().resource(route).create();
 
         final Optional<Endpoint> endpoint = endpointDiscovery.findEndpoint("test", "ksvc1");
         assertTrue(endpoint.isPresent());
@@ -112,7 +90,7 @@ public class KnativeRouteEndpointDiscoveryTest {
         endpointDiscovery.setKnativeClient(knativeClient);
         final Map<String, String> labels = Collections.singletonMap("app", "serverlessapp");
 
-        // Configure mock route with labels
+        // configure mock
         final RouteStatus status = new RouteStatus();
         status.setUrl("http://192.168.2.32");
         final Route route = new RouteBuilder()
@@ -123,26 +101,7 @@ public class KnativeRouteEndpointDiscoveryTest {
                 .withStatus(status)
                 .build();
 
-        // FABRIC8 7.X COMPATIBILITY: Access mock server via static method
-        KubernetesMockServer mockServer = KubernetesMockServerTestResource.getServer();
-
-        // Configure POST expectation for route creation
-        mockServer.expect().post()
-                .withPath("/apis/serving.knative.dev/v1/namespaces/test/routes")
-                .andReturn(201, route)
-                .once();
-
-        // FABRIC8 7.X COMPATIBILITY: URL-encode query parameters in mock expectations
-        // Reason: Fabric8 7.x performs strict path matching including query parameters.
-        // The label selector "app=serverlessapp" must be URL-encoded as "app%3Dserverlessapp"
-        // where %3D is the URL encoding for the equals sign (=).
-        // Previously, the mock server was more lenient and would match paths without exact query parameters.
-        mockServer.expect().get()
-                .withPath("/apis/serving.knative.dev/v1/namespaces/test/routes?labelSelector=app%3Dserverlessapp")
-                .andReturn(200, new io.fabric8.knative.serving.v1.RouteListBuilder().addToItems(new RouteBuilder(route).withStatus(status).build()).build())
-                .always();
-
-        kubernetesClient.resource(route).inNamespace("test").create();
+        knativeClient.routes().resource(route).create();
 
         final List<Endpoint> endpoint = endpointDiscovery.findEndpoint("test", labels);
         assertFalse(endpoint.isEmpty());
@@ -159,27 +118,12 @@ public class KnativeRouteEndpointDiscoveryTest {
         final KnativeRouteEndpointDiscovery endpointDiscovery = new KnativeRouteEndpointDiscovery(null);
         endpointDiscovery.setKnativeClient(knativeClient);
 
-        // Configure mock route WITHOUT status (testing edge case)
-        // This tests the scenario where a Knative route exists but hasn't been assigned a URL yet
+        // configure mock
         final Route route = new RouteBuilder()
                 .withNewMetadata().withName("ksvc3").withNamespace("test").endMetadata()
                 .build();
 
-        // FABRIC8 7.X COMPATIBILITY: Access mock server via static method
-        KubernetesMockServer mockServer = KubernetesMockServerTestResource.getServer();
-
-        // Configure mock expectations for route without status
-        mockServer.expect().post()
-                .withPath("/apis/serving.knative.dev/v1/namespaces/test/routes")
-                .andReturn(201, route)
-                .once();
-
-        mockServer.expect().get()
-                .withPath("/apis/serving.knative.dev/v1/namespaces/test/routes/ksvc3")
-                .andReturn(200, route)
-                .always();
-
-        kubernetesClient.resource(route).inNamespace("test").create();
+        knativeClient.routes().resource(route).create();
 
         final Optional<Endpoint> endpoint = endpointDiscovery.findEndpoint("test", "ksvc3");
         assertTrue(endpoint.isEmpty());
