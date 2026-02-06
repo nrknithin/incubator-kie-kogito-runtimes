@@ -42,7 +42,7 @@ import io.quarkus.deployment.util.ProcessUtil;
 import io.quarkus.maven.dependency.ResolvedDependency;
 import io.quarkus.paths.PathVisit;
 import io.quarkus.runtime.util.HashUtil;
-import io.quarkus.utilities.OS;
+import io.smallrye.common.os.OS;
 
 public class ProtocUtils {
 
@@ -219,7 +219,7 @@ public class ProtocUtils {
     }
 
     private static String escapeWhitespace(String path) {
-        if (OS.determineOS() == OS.LINUX) {
+        if (OS.current() == OS.LINUX) {
             return path.replace(" ", "\\ ");
         } else {
             return path;
@@ -291,8 +291,8 @@ public class ProtocUtils {
     }
 
     private static String osClassifier() throws CodeGenException {
-        String architecture = OS.getArchitecture();
-        switch (OS.determineOS()) {
+        String architecture = getArchitecture();
+        switch (OS.current()) {
             case LINUX:
                 return "linux-" + architecture;
             case WINDOWS:
@@ -303,6 +303,21 @@ public class ProtocUtils {
                 throw new CodeGenException(
                         "Unsupported OS, please use maven plugin instead to generate Java classes from proto files");
         }
+    }
+
+    private static String getArchitecture() {
+        String arch = System.getProperty("os.arch");
+        if (arch != null) {
+            arch = arch.toLowerCase(Locale.ROOT);
+            if (arch.equals("amd64") || arch.equals("x86_64")) {
+                return "x86_64";
+            } else if (arch.equals("aarch64") || arch.equals("arm64")) {
+                return "aarch_64";
+            } else if (arch.equals("x86") || arch.equals("i386") || arch.equals("i486") || arch.equals("i586") || arch.equals("i686")) {
+                return "x86_32";
+            }
+        }
+        return arch != null ? arch : "unknown";
     }
 
     private static class Executables {

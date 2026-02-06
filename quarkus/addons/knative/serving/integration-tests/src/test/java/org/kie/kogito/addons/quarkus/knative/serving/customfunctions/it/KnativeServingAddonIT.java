@@ -31,7 +31,7 @@ import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 
-import io.fabric8.kubernetes.client.server.mock.KubernetesServer;
+import io.fabric8.kubernetes.client.server.mock.KubernetesMockServer;
 import io.quarkus.test.junit.QuarkusTest;
 import io.quarkus.test.kubernetes.client.KubernetesTestServer;
 import io.quarkus.test.kubernetes.client.WithKubernetesTestServer;
@@ -67,7 +67,7 @@ class KnativeServingAddonIT {
     Long requestTimeout;
 
     @KubernetesTestServer
-    KubernetesServer mockServer;
+    KubernetesMockServer mockServer;
 
     @BeforeAll
     static void beforeAll() {
@@ -89,7 +89,7 @@ class KnativeServingAddonIT {
 
     @BeforeEach
     void beforeEach() {
-        createKnativeServiceIfNotExists(mockServer.getClient(), "knative/quarkus-greeting.yaml", NAMESPACE,
+        createKnativeServiceIfNotExists(mockServer.createClient(), "knative/quarkus-greeting.yaml", NAMESPACE,
                 SERVICENAME, remoteServiceUrl);
     }
 

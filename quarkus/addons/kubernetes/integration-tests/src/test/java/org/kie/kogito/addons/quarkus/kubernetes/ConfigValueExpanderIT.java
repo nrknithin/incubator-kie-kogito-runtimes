@@ -21,7 +21,7 @@ package org.kie.kogito.addons.quarkus.kubernetes;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import io.fabric8.kubernetes.client.server.mock.KubernetesServer;
+import io.fabric8.kubernetes.client.server.mock.KubernetesMockServer;
 import io.quarkus.test.junit.QuarkusIntegrationTest;
 import io.quarkus.test.kubernetes.client.KubernetesTestServer;
 import io.quarkus.test.kubernetes.client.WithKubernetesTestServer;
@@ -39,11 +39,11 @@ class ConfigValueExpanderIT {
     private static final String SERVICENAME = "serverless-workflow-greeting-quarkus";
 
     @KubernetesTestServer
-    KubernetesServer mockServer;
+    KubernetesMockServer mockServer;
 
     @BeforeEach
     void beforeEach() {
-        createKnativeServiceIfNotExists(mockServer.getClient(), "knative/quarkus-greeting.yaml", NAMESPACE, SERVICENAME);
+        createKnativeServiceIfNotExists(mockServer.createClient(), "knative/quarkus-greeting.yaml", NAMESPACE, SERVICENAME);
     }
 
     @Test

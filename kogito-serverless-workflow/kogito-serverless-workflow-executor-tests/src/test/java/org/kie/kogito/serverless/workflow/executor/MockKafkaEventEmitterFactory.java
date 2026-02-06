@@ -28,7 +28,7 @@ import io.cloudevents.kafka.CloudEventSerializer;
 
 public class MockKafkaEventEmitterFactory extends KafkaEventEmitterFactory {
 
-    public static MockProducer<byte[], CloudEvent> producer = new MockProducer<>(true, new ByteArraySerializer(), new CloudEventSerializer() {
+    public static MockProducer<byte[], CloudEvent> producer = new MockProducer<>(true, null, new ByteArraySerializer(), new CloudEventSerializer() {
         @Override
         public byte[] serialize(String topic, CloudEvent data) {
             return super.serialize(topic, new RecordHeaders(), data);

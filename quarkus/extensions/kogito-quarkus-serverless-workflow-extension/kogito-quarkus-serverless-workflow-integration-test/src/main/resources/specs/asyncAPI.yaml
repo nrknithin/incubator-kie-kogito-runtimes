@@ -17,7 +17,7 @@
 # under the License.
 #
 
-asyncapi: '2.0.0'
+asyncapi: '3.0.0'
 id: 'oneConsumer'
 info:
   title: Kafka Application
@@ -28,23 +28,32 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0
 servers:
   production:
-    url: localhost:9092
+    host: localhost:9092
     description: Development server
     protocol: kafka
     protocolVersion: '1.0.0'
 channels:
   wait:
+    address: wait
     description: A message channel
-    subscribe:
-      operationId: wait
-      summary: Get messages
+    messages:
       message:
         $ref: '#/components/messages/message'
-    publish:
-      operationId: sendWait
-      summary: Send messages
-      message:
-        $ref: '#/components/messages/message'
+operations:
+  wait:
+    action: receive
+    channel:
+      $ref: '#/channels/wait'
+    summary: Get messages
+    messages:
+      - $ref: '#/channels/wait/messages/message'
+  sendWait:
+    action: send
+    channel:
+      $ref: '#/channels/wait'
+    summary: Send messages
+    messages:
+      - $ref: '#/channels/wait/messages/message'
 components:
   messages:
     message:

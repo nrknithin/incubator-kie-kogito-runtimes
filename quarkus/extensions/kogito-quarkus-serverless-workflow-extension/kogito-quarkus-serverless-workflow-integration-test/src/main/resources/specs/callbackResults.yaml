@@ -17,7 +17,7 @@
 # under the License.
 #
 
-asyncapi: '2.0.0'
+asyncapi: '3.0.0'
 id: 'callbackResults'
 info:
   title: Kafka Application
@@ -28,46 +28,77 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0
 servers:
   production:
-    url: localhost:9092
+    host: localhost:9092
     description: Development server
     protocol: kafka
     protocolVersion: '1.0.0'
 channels:
   success:
+    address: success
     description: A message channel for successful completions
-    publish:
-      operationId: sendSuccess
-      summary: Success
+    messages:
       message:
         $ref: '#/components/messages/message'
   timeoutCallbackError:
+    address: timeoutCallbackError
     description: A message channel for callback timeout error
-    publish:
-      operationId: sendTimeoutExpiredForCallbackError
-      summary: Timeout Expired
+    messages:
       message:
         $ref: '#/components/messages/message'
   timeoutError:
+    address: timeoutError
     description: A message channel for timeout error
-    publish:
-      operationId: sendTimeoutExpiredError
-      summary: Timeout Expired
+    messages:
       message:
         $ref: '#/components/messages/message'
   sendEvenError:
+    address: sendEvenError
     description: A message channel for publishing errors
-    publish:
-      operationId: sendEvenError
-      summary: Reporting error
+    messages:
       message:
         $ref: '#/components/messages/message'
   error:
+    address: error
     description: A message channel for failed executions
-    publish:
-      operationId: sendFailed
-      summary: Failed
+    messages:
       message:
         $ref: '#/components/messages/message'
+operations:
+  sendSuccess:
+    action: send
+    channel:
+      $ref: '#/channels/success'
+    summary: Success
+    messages:
+      - $ref: '#/channels/success/messages/message'
+  sendTimeoutExpiredForCallbackError:
+    action: send
+    channel:
+      $ref: '#/channels/timeoutCallbackError'
+    summary: Timeout Expired
+    messages:
+      - $ref: '#/channels/timeoutCallbackError/messages/message'
+  sendTimeoutExpiredError:
+    action: send
+    channel:
+      $ref: '#/channels/timeoutError'
+    summary: Timeout Expired
+    messages:
+      - $ref: '#/channels/timeoutError/messages/message'
+  sendEvenError:
+    action: send
+    channel:
+      $ref: '#/channels/sendEvenError'
+    summary: Reporting error
+    messages:
+      - $ref: '#/channels/sendEvenError/messages/message'
+  sendFailed:
+    action: send
+    channel:
+      $ref: '#/channels/error'
+    summary: Failed
+    messages:
+      - $ref: '#/channels/error/messages/message'
 components:
   messages:
     message:

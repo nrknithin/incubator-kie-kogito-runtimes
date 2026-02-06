@@ -20,31 +20,35 @@ package org.kie.kogito.addons.quarkus.k8s.test.utils;
 
 import java.util.Map;
 
-import io.fabric8.openshift.client.server.mock.OpenShiftServer;
+import io.fabric8.kubernetes.client.server.mock.KubernetesMockServer;
 import io.quarkus.test.common.QuarkusTestResourceLifecycleManager;
 
+/**
+ * Quarkus test resource that provides a Fabric8 mock server for OpenShift/Kubernetes testing.
+ * Note: In Fabric8 7.x, OpenShiftServer was merged into KubernetesMockServer.
+ */
 public class OpenShiftMockServerTestResource implements QuarkusTestResourceLifecycleManager {
 
-    private OpenShiftServer server;
+    private KubernetesMockServer server;
 
     @Override
     public Map<String, String> start() {
-        server = new OpenShiftServer(true, true);
-        server.before(); // Start mock server
+        server = new KubernetesMockServer(true); // CRUD mode enabled
+        server.init(); // Start mock server
 
         return Map.of(
-                "quarkus.kubernetes-client.master-url", server.getOpenshiftClient().getMasterUrl().toString(),
+                "quarkus.kubernetes-client.master-url", server.createClient().getMasterUrl().toString(),
                 "quarkus.kubernetes-client.trust-certs", "true");
     }
 
     @Override
     public void stop() {
         if (server != null) {
-            server.after(); // Stop mock server
+            server.destroy(); // Stop mock server
         }
     }
 
-    public OpenShiftServer getServer() {
+    public KubernetesMockServer getServer() {
         return server;
     }
 }

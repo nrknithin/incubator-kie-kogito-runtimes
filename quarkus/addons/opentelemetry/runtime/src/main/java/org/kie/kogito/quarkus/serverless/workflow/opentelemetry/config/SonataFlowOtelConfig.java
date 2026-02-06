@@ -21,35 +21,74 @@ package org.kie.kogito.quarkus.serverless.workflow.opentelemetry.config;
 import io.smallrye.config.ConfigMapping;
 import io.smallrye.config.WithDefault;
 
+/**
+ * Configuration for SonataFlow OpenTelemetry integration.
+ */
 @ConfigMapping(prefix = "sonataflow.otel")
 public interface SonataFlowOtelConfig {
 
+    /**
+     * Whether SonataFlow OpenTelemetry integration is enabled.
+     */
     @WithDefault("true")
     boolean enabled();
 
+    /**
+     * The service name to use for OpenTelemetry traces.
+     */
     @WithDefault("${quarkus.application.name:kogito-workflow-service}")
     String serviceName();
 
+    /**
+     * The service version to use for OpenTelemetry traces.
+     */
     @WithDefault("${quarkus.application.version:unknown}")
     String serviceVersion();
 
+    /**
+     * Configuration for span generation.
+     */
     SpanConfig spans();
 
+    /**
+     * Configuration for event generation.
+     */
     EventConfig events();
 
+    /**
+     * Configuration for span generation.
+     */
     interface SpanConfig {
+        /**
+         * Whether span generation is enabled.
+         */
         @WithDefault("true")
         boolean enabled();
     }
 
+    /**
+     * Configuration for event generation.
+     */
     interface EventConfig {
+        /**
+         * Whether event generation is enabled.
+         */
         @WithDefault("true")
         boolean enabled();
     }
 
+    /**
+     * Configuration for test infrastructure.
+     */
     TestInfrastructureConfig testInfrastructure();
 
+    /**
+     * Configuration for test infrastructure.
+     */
     interface TestInfrastructureConfig {
+        /**
+         * Whether test infrastructure is enabled.
+         */
         @WithDefault("false")
         boolean enabled();
     }

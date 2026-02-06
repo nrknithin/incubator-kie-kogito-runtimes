@@ -27,9 +27,10 @@ import org.kie.kogito.serverless.workflow.asyncapi.AsyncChannelInfo;
 import org.kie.kogito.serverless.workflow.asyncapi.AsyncInfo;
 import org.kie.kogito.serverless.workflow.asyncapi.AsyncInfoConverter;
 
-import com.asyncapi.v2._6_0.model.AsyncAPI;
-import com.asyncapi.v2._6_0.model.channel.ChannelItem;
-import com.asyncapi.v2._6_0.model.channel.operation.Operation;
+import com.asyncapi.v3._0_0.model.AsyncAPI;
+import com.asyncapi.v3._0_0.model.channel.Channel;
+import com.asyncapi.v3._0_0.model.operation.Operation;
+import com.asyncapi.v3._0_0.model.operation.OperationAction;
 
 import io.quarkiverse.asyncapi.config.AsyncAPIRegistry;
 
@@ -46,21 +47,45 @@ public class AsyncAPIInfoConverter implements AsyncInfoConverter {
         return registry.getAsyncAPI(id).map(AsyncAPIInfoConverter::from);
     }
 
+    @SuppressWarnings("unchecked")
     private static AsyncInfo from(AsyncAPI asyncApi) {
         Map<String, AsyncChannelInfo> map = new HashMap<>();
-        for (Entry<String, ChannelItem> entry : asyncApi.getChannels().entrySet()) {
-            addChannel(map, entry.getValue().getPublish(), entry.getKey() + "_out", true);
-            addChannel(map, entry.getValue().getSubscribe(), entry.getKey(), false);
+        Map<String, Object> operations = asyncApi.getOperations();
+        if (operations != null) {
+            for (Entry<String, Object> entry : operations.entrySet()) {
+                if (entry.getValue() instanceof Operation) {
+                    Operation operation = (Operation) entry.getValue();
+                    String operationId = entry.getKey();
+                    if (operationId != null && operation.getChannel() != null) {
+                        // In v3, 'send' means publishing (outgoing), 'receive' means subscribing (incoming)
+                        boolean isSend = operation.getAction() == OperationAction.SEND;
+                        String channelRef = getChannelName(operation, asyncApi.getChannels());
+                        String channelName = isSend ? channelRef + "_out" : channelRef;
+                        map.putIfAbsent(operationId, new AsyncChannelInfo(channelName, isSend));
+                    }
+                }
+            }
         }
         return new AsyncInfo(map);
     }
 
-    private static void addChannel(Map<String, AsyncChannelInfo> map, Operation operation, String channelName, boolean publish) {
-        if (operation != null) {
-            String operationId = operation.getOperationId();
-            if (operationId != null) {
-                map.putIfAbsent(operationId, new AsyncChannelInfo(channelName, publish));
+    private static String getChannelName(Operation operation, Map<String, Object> channels) {
+        Object channelRef = operation.getChannel();
+        if (channelRef instanceof Channel) {
+            Channel channel = (Channel) channelRef;
+            // Try to get the address from the channel, or find the key from the channels map
+            if (channel.getAddress() != null) {
+                return channel.getAddress();
             }
         }
+        // If it's a reference string, extract the channel name
+        if (channelRef != null) {
+            String refStr = channelRef.toString();
+            if (refStr.contains("#/channels/")) {
+                return refStr.substring(refStr.lastIndexOf("/") + 1);
+            }
+            return refStr;
+        }
+        return "unknown";
     }
 }

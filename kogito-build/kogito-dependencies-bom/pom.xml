@@ -56,9 +56,9 @@
     <version.com.ongres.scram>2.1</version.com.ongres.scram>
     <version.net.minidev.jsonsmart>2.4.10</version.net.minidev.jsonsmart>
     <version.net.thisptr.jackson-jq>1.0.0-preview.20240207</version.net.thisptr.jackson-jq>
-    <version.io.quarkiverse.jackson-jq>2.2.0</version.io.quarkiverse.jackson-jq>
+    <version.io.quarkiverse.jackson-jq>2.3.0</version.io.quarkiverse.jackson-jq>
     <version.io.quarkiverse.openapi.generator>2.11.0-lts</version.io.quarkiverse.openapi.generator>
-    <version.io.quarkiverse.asyncapi>0.3.0</version.io.quarkiverse.asyncapi>
+    <version.io.quarkiverse.asyncapi>1.0.5</version.io.quarkiverse.asyncapi>
     <version.io.quarkiverse.reactivemessaging.http>2.5.0-lts</version.io.quarkiverse.reactivemessaging.http>
     <version.io.quarkiverse.embedded.postgresql>0.7.2</version.io.quarkiverse.embedded.postgresql>
     <version.com.github.haifengl.smile>1.5.2</version.com.github.haifengl.smile>
@@ -88,8 +88,7 @@
     Kubernetes addons since they use a different version.
     -->
     <version.io.fabric8.kubernetes-client>7.3.1</version.io.fabric8.kubernetes-client>
-    <version.io.fabric8.openshift-mock>6.13.5</version.io.fabric8.openshift-mock>
-    <version.io.micrometer>1.14.12</version.io.micrometer>
+        <version.io.micrometer>1.14.12</version.io.micrometer>
     <version.org.flywaydb>11.14.1</version.org.flywaydb>
     <version.org.postgresql>42.7.8</version.org.postgresql>
     <version.com.h2>2.3.232</version.com.h2> <!-- Overriding version 2.3.230 to fix https://github.com/h2database/h2database/issues/4079 -->
@@ -827,17 +826,11 @@
         <artifactId>knative-model</artifactId>
         <version>${version.io.fabric8.kubernetes-client}</version>
       </dependency>
+      <!-- fabric8 - kubernetes mock server (replaces deprecated openshift-server-mock in Fabric8 7.x) -->
       <dependency>
         <groupId>io.fabric8</groupId>
         <artifactId>kubernetes-server-mock</artifactId>
         <version>${version.io.fabric8.kubernetes-client}</version>
-      </dependency>
-
-      <!-- fabric8 - openshift mock server -->
-      <dependency>
-        <groupId>io.fabric8</groupId>
-        <artifactId>openshift-server-mock</artifactId>
-        <version>${version.io.fabric8.openshift-mock}</version>
       </dependency>
 
       <dependency>
