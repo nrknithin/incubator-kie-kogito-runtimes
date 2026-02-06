@@ -18,37 +18,73 @@
  */
 package org.kie.kogito.addons.quarkus.k8s.test.utils;
 
+import java.util.HashMap;
 import java.util.Map;
 
+import io.fabric8.kubernetes.client.KubernetesClient;
+import io.fabric8.kubernetes.client.server.mock.KubernetesCrudDispatcher;
 import io.fabric8.kubernetes.client.server.mock.KubernetesMockServer;
+import io.fabric8.mockwebserver.MockWebServer;
+import io.fabric8.openshift.client.OpenShiftClient;
 import io.quarkus.test.common.QuarkusTestResourceLifecycleManager;
 
 /**
  * Quarkus test resource that provides a Fabric8 mock server for OpenShift/Kubernetes testing.
- * Note: In Fabric8 7.x, OpenShiftServer was merged into KubernetesMockServer.
+ *
+ * Fabric8 7.x migration notes:
+ * - The openshift-server-mock artifact and OpenShiftMockServer class were removed in Fabric8 7.x.
+ * - Replaced with KubernetesMockServer + client.adapt(OpenShiftClient.class).
+ * - The single-boolean constructor KubernetesMockServer(boolean) sets useHttps, NOT crudMode.
+ * - CRUD mode requires passing a KubernetesCrudDispatcher explicitly.
+ * - Uses io.fabric8.mockwebserver.Context (fully qualified to avoid clash with
+ * QuarkusTestResourceLifecycleManager.Context).
  */
 public class OpenShiftMockServerTestResource implements QuarkusTestResourceLifecycleManager {
 
     private KubernetesMockServer server;
+    private KubernetesClient kubernetesClient;
+    private OpenShiftClient openShiftClient;
 
     @Override
     public Map<String, String> start() {
-        server = new KubernetesMockServer(true); // CRUD mode enabled
-        server.init(); // Start mock server
+        // Fabric8 7.x: Create mock server with CRUD mode via KubernetesCrudDispatcher.
+        // Context is fully qualified to avoid clash with QuarkusTestResourceLifecycleManager.Context.
+        // useHttps=false to avoid SSL handshake overhead in tests.
+        server = new KubernetesMockServer(
+                new io.fabric8.mockwebserver.Context(),
+                new MockWebServer(),
+                new HashMap<>(),
+                new KubernetesCrudDispatcher(),
+                false);
+        server.init();
+
+        // Fabric8 7.x: createClient() replaces getClient(), adapt() replaces createOpenShiftClient()
+        kubernetesClient = server.createClient();
+        openShiftClient = kubernetesClient.adapt(OpenShiftClient.class);
 
         return Map.of(
-                "quarkus.kubernetes-client.master-url", server.createClient().getMasterUrl().toString(),
+                "quarkus.kubernetes-client.master-url", kubernetesClient.getConfiguration().getMasterUrl(),
                 "quarkus.kubernetes-client.trust-certs", "true");
     }
 
     @Override
     public void stop() {
+        if (openShiftClient != null) {
+            openShiftClient.close();
+        }
+        if (kubernetesClient != null) {
+            kubernetesClient.close();
+        }
         if (server != null) {
-            server.destroy(); // Stop mock server
+            server.destroy();
         }
     }
 
     public KubernetesMockServer getServer() {
         return server;
+    }
+
+    public OpenShiftClient getClient() {
+        return openShiftClient;
     }
 }

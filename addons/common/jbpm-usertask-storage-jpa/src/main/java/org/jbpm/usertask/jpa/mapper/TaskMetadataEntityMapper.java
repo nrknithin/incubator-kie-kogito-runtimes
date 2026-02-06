@@ -63,7 +63,7 @@ public class TaskMetadataEntityMapper implements EntityMapper {
                 metadataEntity.setValue(JSONUtils.valueToString(value));
                 metadataEntity.setJavaType(value.getClass().getName());
             }
-            repository.persist(metadataEntity);
+            // Hibernate 7.x: Child entities are auto-persisted via parent's @OneToMany(cascade = CascadeType.ALL)
         });
     }
 

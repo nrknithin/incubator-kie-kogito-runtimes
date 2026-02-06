@@ -25,17 +25,19 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.kie.kogito.addons.quarkus.k8s.test.utils.KubernetesMockServerTestResource;
 
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 
-import io.fabric8.kubernetes.client.server.mock.KubernetesMockServer;
+import io.fabric8.kubernetes.client.KubernetesClient;
+import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.junit.QuarkusTest;
-import io.quarkus.test.kubernetes.client.KubernetesTestServer;
-import io.quarkus.test.kubernetes.client.WithKubernetesTestServer;
 import io.restassured.http.ContentType;
+
+import jakarta.inject.Inject;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
@@ -52,7 +54,7 @@ import static org.kie.kogito.addons.quarkus.k8s.test.utils.KubeTestUtils.createK
 import static org.kie.kogito.addons.quarkus.knative.serving.customfunctions.KnativeWorkItemHandler.APPLICATION_CLOUDEVENTS_JSON_CHARSET_UTF_8;
 
 @QuarkusTest
-@WithKubernetesTestServer
+@QuarkusTestResource(KubernetesMockServerTestResource.class)
 class KnativeServingAddonIT {
 
     public static final String AT_LEAST_ONE_NON_WHITE_CHARACTER_REGEX = ".*\\S.*";
@@ -66,8 +68,8 @@ class KnativeServingAddonIT {
     @ConfigProperty(name = "kogito.sw.functions.greet_with_timeout.timeout")
     Long requestTimeout;
 
-    @KubernetesTestServer
-    KubernetesMockServer mockServer;
+    @Inject
+    KubernetesClient kubernetesClient;
 
     @BeforeAll
     static void beforeAll() {
@@ -89,7 +91,7 @@ class KnativeServingAddonIT {
 
     @BeforeEach
     void beforeEach() {
-        createKnativeServiceIfNotExists(mockServer.createClient(), "knative/quarkus-greeting.yaml", NAMESPACE,
+        createKnativeServiceIfNotExists(kubernetesClient, "knative/quarkus-greeting.yaml", NAMESPACE,
                 SERVICENAME, remoteServiceUrl);
     }
 

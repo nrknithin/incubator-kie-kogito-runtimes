@@ -1,3 +1,4 @@
+
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -27,6 +28,7 @@ import org.kie.kogito.serverless.workflow.asyncapi.AsyncChannelInfo;
 import org.kie.kogito.serverless.workflow.asyncapi.AsyncInfo;
 import org.kie.kogito.serverless.workflow.asyncapi.AsyncInfoConverter;
 
+// Updated to AsyncAPI v3.0.0 (from v2.6.0) as part of Quarkus 3.27.2 upgrade
 import com.asyncapi.v3._0_0.model.AsyncAPI;
 import com.asyncapi.v3._0_0.model.channel.Channel;
 import com.asyncapi.v3._0_0.model.operation.Operation;
@@ -47,45 +49,59 @@ public class AsyncAPIInfoConverter implements AsyncInfoConverter {
         return registry.getAsyncAPI(id).map(AsyncAPIInfoConverter::from);
     }
 
-    @SuppressWarnings("unchecked")
     private static AsyncInfo from(AsyncAPI asyncApi) {
         Map<String, AsyncChannelInfo> map = new HashMap<>();
-        Map<String, Object> operations = asyncApi.getOperations();
-        if (operations != null) {
-            for (Entry<String, Object> entry : operations.entrySet()) {
-                if (entry.getValue() instanceof Operation) {
-                    Operation operation = (Operation) entry.getValue();
-                    String operationId = entry.getKey();
-                    if (operationId != null && operation.getChannel() != null) {
-                        // In v3, 'send' means publishing (outgoing), 'receive' means subscribing (incoming)
-                        boolean isSend = operation.getAction() == OperationAction.SEND;
-                        String channelRef = getChannelName(operation, asyncApi.getChannels());
-                        String channelName = isSend ? channelRef + "_out" : channelRef;
-                        map.putIfAbsent(operationId, new AsyncChannelInfo(channelName, isSend));
-                    }
+
+        // AsyncAPI v3.0.0 migration: In v3, channels and operations are separate top-level objects
+        // v2: channels contained publish/subscribe operations directly
+        // v3: operations reference channels via $ref, and channels have addresses
+        // Build a helper map: channelId -> address (topic/path)
+        Map<String, String> channelIdToAddress = new HashMap<>();
+        if (asyncApi.getChannels() != null) {
+            for (Entry<String, Object> ch : asyncApi.getChannels().entrySet()) {
+                String channelId = ch.getKey();
+                if (ch.getValue() instanceof Channel) {
+                    Channel channel = (Channel) ch.getValue();
+                    // In v3, address holds the actual path/topic (key is just an ID)
+                    String address = Optional.ofNullable(channel.getAddress()).orElse(channelId);
+                    channelIdToAddress.put(channelId, address);
                 }
             }
         }
-        return new AsyncInfo(map);
-    }
 
-    private static String getChannelName(Operation operation, Map<String, Object> channels) {
-        Object channelRef = operation.getChannel();
-        if (channelRef instanceof Channel) {
-            Channel channel = (Channel) channelRef;
-            // Try to get the address from the channel, or find the key from the channels map
-            if (channel.getAddress() != null) {
-                return channel.getAddress();
+        // Iterate operations and map operation key -> AsyncChannelInfo
+        if (asyncApi.getOperations() != null) {
+            for (Entry<String, Object> opEntry : asyncApi.getOperations().entrySet()) {
+                String opKey = opEntry.getKey();
+                if (!(opEntry.getValue() instanceof Operation)) {
+                    continue;
+                }
+                Operation op = (Operation) opEntry.getValue();
+
+                // In v3.0.0, the operation key is the operation identifier
+                String operationId = opKey;
+
+                // Resolve the referenced channel ID from "$ref: #/channels/<id>"
+                String channelId = null;
+                if (op.getChannel() != null) {
+                    String ref = op.getChannel().getRef(); // expected form
+                    if (ref != null && ref.contains("/")) {
+                        channelId = ref.substring(ref.lastIndexOf('/') + 1);
+                    }
+                }
+
+                String address = channelId != null ? channelIdToAddress.get(channelId) : null;
+                OperationAction action = op.getAction();
+
+                if (operationId != null && address != null && action != null) {
+                    // AsyncAPI v3.0.0: action is now OperationAction enum (SEND/RECEIVE) instead of v2's publish/subscribe
+                    boolean publish = action == OperationAction.SEND; // send -> we publish, receive -> we consume
+                    String channelName = publish ? address + "_out" : address;
+                    map.putIfAbsent(operationId, new AsyncChannelInfo(channelName, publish));
+                }
             }
         }
-        // If it's a reference string, extract the channel name
-        if (channelRef != null) {
-            String refStr = channelRef.toString();
-            if (refStr.contains("#/channels/")) {
-                return refStr.substring(refStr.lastIndexOf("/") + 1);
-            }
-            return refStr;
-        }
-        return "unknown";
+
+        return new AsyncInfo(map);
     }
 }

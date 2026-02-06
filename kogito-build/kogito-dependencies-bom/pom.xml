@@ -53,7 +53,7 @@
     <version.com.fasterxml.jackson>2.19.2</version.com.fasterxml.jackson>
     <version.com.fasterxml.jackson.databind>2.19.2</version.com.fasterxml.jackson.databind>
     <version.com.jayway.jsonpath>2.9.0</version.com.jayway.jsonpath>
-    <version.com.ongres.scram>2.1</version.com.ongres.scram>
+    <version.com.ongres.scram>3.1</version.com.ongres.scram>
     <version.net.minidev.jsonsmart>2.4.10</version.net.minidev.jsonsmart>
     <version.net.thisptr.jackson-jq>1.0.0-preview.20240207</version.net.thisptr.jackson-jq>
     <version.io.quarkiverse.jackson-jq>2.3.0</version.io.quarkiverse.jackson-jq>
@@ -979,7 +979,7 @@
       </dependency>
       <dependency>
         <groupId>com.ongres.scram</groupId>
-        <artifactId>client</artifactId>
+        <artifactId>scram-client</artifactId>
         <version>${version.com.ongres.scram}</version>
         <scope>test</scope>
       </dependency>

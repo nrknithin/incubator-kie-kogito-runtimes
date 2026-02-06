@@ -64,7 +64,7 @@ public class TaskInputsEntityMapper implements EntityMapper {
                 inputEntity.setValue(JSONUtils.valueToString(value).getBytes(StandardCharsets.UTF_8));
                 inputEntity.setJavaType(value.getClass().getName());
             }
-            repository.persist(inputEntity);
+            // Hibernate 7.x: Child entities are auto-persisted via parent's @OneToMany(cascade = CascadeType.ALL)
         });
     }
 
