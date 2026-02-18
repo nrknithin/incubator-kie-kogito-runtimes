@@ -56,6 +56,7 @@
                             <unpack>false</unpack>
                             <outputDirectory>${output.spec.directory}/20100501/</outputDirectory>
                             <md5>a9ca10c41d60127161609ce9053b45a4</md5>
+                            <failOnError>false</failOnError>
                         </configuration>
                     </execution>
                     <execution>
@@ -69,6 +70,7 @@
                             <unpack>false</unpack>
                             <outputDirectory>${output.spec.directory}/20100501/</outputDirectory>
                             <md5>59cc95a525cc3c045dee8b4b67c06813</md5>
+                            <failOnError>false</failOnError>
                         </configuration>
                     </execution>
                     <execution>
@@ -82,6 +84,7 @@
                             <unpack>false</unpack>
                             <outputDirectory>${output.spec.directory}/20100501/</outputDirectory>
                             <md5>f7945fe8800f45f6f10b95375a2281bf</md5>
+                            <failOnError>false</failOnError>
                         </configuration>
                     </execution>
                     <execution>
@@ -95,6 +98,7 @@
                             <unpack>false</unpack>
                             <outputDirectory>${output.spec.directory}/20100501/</outputDirectory>
                             <md5>d019b4b9e7e58629c4aac99a33807141</md5>
+                            <failOnError>false</failOnError>
                         </configuration>
                     </execution>
                     <execution>
@@ -108,6 +112,85 @@
                             <unpack>false</unpack>
                             <outputDirectory>${output.spec.directory}/20100501/</outputDirectory>
                             <md5>aceeaf99459f3ba31fcf958c5fbd9903</md5>
+                            <failOnError>false</failOnError>
+                        </configuration>
+                    </execution>
+
+                    <!-- Fallback downloads, if the first are not available due to OMG outage or similar.
+                         They have overwriting set to false, so if the XSD is already downloaded, the plugin skips the download. -->
+                    <execution>
+                        <id>20100501_bpmn-fallback-download</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>wget</goal>
+                        </goals>
+                        <configuration>
+                            <url>https://raw.githubusercontent.com/falko/omg-specifications/master/bpmn/xsd/BPMN20.xsd</url>
+                            <unpack>false</unpack>
+                            <outputDirectory>${output.spec.directory}/20100501/</outputDirectory>
+                            <md5>a9ca10c41d60127161609ce9053b45a4</md5>
+                            <failOnError>true</failOnError>
+                            <overwrite>false</overwrite>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>20100501_bpmndi-fallback-download</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>wget</goal>
+                        </goals>
+                        <configuration>
+                            <url>https://raw.githubusercontent.com/falko/omg-specifications/master/bpmn/xsd/BPMNDI.xsd</url>
+                            <unpack>false</unpack>
+                            <outputDirectory>${output.spec.directory}/20100501/</outputDirectory>
+                            <md5>59cc95a525cc3c045dee8b4b67c06813</md5>
+                            <failOnError>true</failOnError>
+                            <overwrite>false</overwrite>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>20100501_dc-fallback-download</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>wget</goal>
+                        </goals>
+                        <configuration>
+                            <url>https://raw.githubusercontent.com/falko/omg-specifications/master/bpmn/xsd/DC.xsd</url>
+                            <unpack>false</unpack>
+                            <outputDirectory>${output.spec.directory}/20100501/</outputDirectory>
+                            <md5>f7945fe8800f45f6f10b95375a2281bf</md5>
+                            <failOnError>true</failOnError>
+                            <overwrite>false</overwrite>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>20100501_di-fallback-download</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>wget</goal>
+                        </goals>
+                        <configuration>
+                            <url>https://raw.githubusercontent.com/falko/omg-specifications/master/bpmn/xsd/DI.xsd</url>
+                            <unpack>false</unpack>
+                            <outputDirectory>${output.spec.directory}/20100501/</outputDirectory>
+                            <md5>d019b4b9e7e58629c4aac99a33807141</md5>
+                            <failOnError>true</failOnError>
+                            <overwrite>false</overwrite>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>20100501_semantic-fallback-download</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>wget</goal>
+                        </goals>
+                        <configuration>
+                            <url>https://raw.githubusercontent.com/falko/omg-specifications/master/bpmn/xsd/Semantic.xsd</url>
+                            <unpack>false</unpack>
+                            <outputDirectory>${output.spec.directory}/20100501/</outputDirectory>
+                            <md5>aceeaf99459f3ba31fcf958c5fbd9903</md5>
+                            <failOnError>true</failOnError>
+                            <overwrite>false</overwrite>
                         </configuration>
                     </execution>
                 </executions>
