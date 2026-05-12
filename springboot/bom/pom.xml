@@ -35,12 +35,29 @@
     <!-- Used to define which poms are allowed to have dependencyManagement sections. This is to enforce the convention that only the root pom should have dependencyManagement, and all other poms should inherit from it. -->
     <allowedPomsList>org.kie.kogito:kogito-spring-boot-bom</allowedPomsList>
     <version.jakarta.servlet>6.0.0</version.jakarta.servlet>
-    <!-- This is needed to override the default version inherited from kie-parent-drools -->
-    <version.mongodb-driver-sync>5.5.2</version.mongodb-driver-sync>
+    <!-- Override kie-parent default (5.5.1) to align with mongodb-driver-core/bson 5.6.4 brought
+         in by spring-boot-dependencies. SyncOperations was refactored between 5.5 and 5.6;
+         keeping sync at 5.5.x against core 5.6.4 causes ClassNotFoundException at runtime. -->
+    <version.mongodb-driver-sync>5.6.4</version.mongodb-driver-sync>
     <version.org.springdoc>2.8.13</version.org.springdoc>
-    <version.org.springframework.cloud>2025.0.1</version.org.springframework.cloud>
-    <version.org.springframework.boot>3.5.12</version.org.springframework.boot>
-    <version.org.springframework>6.2.17</version.org.springframework>
+    <!-- Groovy -->
+    <!-- must be aligned with the Archetype plugin: https://maven.apache.org/archetype/maven-archetype-plugin/dependencies.html -->
+    <version.org.apache.groovy>4.0.29</version.org.apache.groovy>
+    <version.org.spockframework>2.2-groovy-4.0</version.org.spockframework>
+    <!-- Spring Boot Cloud aligned with Spring Boot Framework version. See: https://spring.io/projects/spring-cloud -->
+    <!-- 2025.1.x (Oakwood) is the first Spring Cloud train compatible with Spring Boot 4.0.x;
+         2025.1.1 specifically targets Spring Boot 4.0.1+. -->
+    <!-- https://github.com/spring-cloud/spring-cloud-release/wiki/Spring-Cloud-2025.1-Release-Notes -->
+    <version.org.springframework.cloud>2025.1.1</version.org.springframework.cloud>
+    <version.org.springframework.boot>4.0.5</version.org.springframework.boot>
+    <version.org.springframework>7.0.6</version.org.springframework>
+    <!-- Aligned with Spring Boot Cloud (spring-cloud-kubernetes-fabric8 5.0.1 declares fabric8 7.4.0) -->
+    <version.io.fabric8>7.4.0</version.io.fabric8>
+    <!-- Override netty 4.1.x from kie-parent for Spring Boot 4: Infinispan 15.x's Hot Rod client
+         calls io.netty.channel.IoHandle which only exists in Netty 4.2.x. Property-only override —
+         Maven resolves properties bottom-up, so the netty depMgmt entries inherited from kie-parent
+         pick up this 4.2.x value for the SB inheritance chain. Quarkus side keeps inheriting 4.1.x. -->
+    <version.io.netty>4.2.12.Final</version.io.netty>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -567,7 +584,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-actuator</artifactId>
         <version>${version.org.springframework.boot}</version>
-      </dependency>
+    </dependency>
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-actuator-autoconfigure</artifactId>
@@ -577,23 +594,23 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter</artifactId>
         <version>${version.org.springframework.boot}</version>
-      </dependency>
+    </dependency>
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>${version.org.springframework.boot}</version>
         <type>pom</type>
-      </dependency>
+    </dependency>
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-validation</artifactId>
         <version>${version.org.springframework.boot}</version>
-      </dependency>
+    </dependency>
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-web</artifactId>
         <version>${version.org.springframework.boot}</version>
-      </dependency>
+    </dependency>
     </dependencies>
   </dependencyManagement>
 

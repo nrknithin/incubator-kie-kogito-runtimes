@@ -18,19 +18,19 @@
  */
 package org.kie.kogito.addon.cloudevents.spring;
 
+import org.kie.kogito.addon.cloudevents.spring.jackson3.ByteArrayCloudEventMarshaller;
+import org.kie.kogito.addon.cloudevents.spring.jackson3.ByteArrayEventMarshaller;
+import org.kie.kogito.addon.cloudevents.spring.jackson3.NoOpCloudEventMarshaller;
+import org.kie.kogito.addon.cloudevents.spring.jackson3.StringCloudEventMarshaller;
+import org.kie.kogito.addon.cloudevents.spring.jackson3.StringEventMarshaller;
 import org.kie.kogito.event.CloudEventMarshaller;
 import org.kie.kogito.event.EventMarshaller;
-import org.kie.kogito.event.impl.ByteArrayCloudEventMarshaller;
-import org.kie.kogito.event.impl.ByteArrayEventMarshaller;
-import org.kie.kogito.event.impl.NoOpCloudEventMarshaller;
 import org.kie.kogito.event.impl.NoOpEventMarshaller;
-import org.kie.kogito.event.impl.StringCloudEventMarshaller;
-import org.kie.kogito.event.impl.StringEventMarshaller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
 
 @Configuration
 public class EventMarshallerProducer {

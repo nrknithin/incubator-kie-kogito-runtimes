@@ -18,17 +18,17 @@
  */
 package org.kie.kogito.addon.cloudevents.spring;
 
+import org.kie.kogito.addon.cloudevents.spring.jackson3.ByteArrayCloudEventUnmarshallerFactory;
+import org.kie.kogito.addon.cloudevents.spring.jackson3.JacksonEventDataUnmarshaller;
+import org.kie.kogito.addon.cloudevents.spring.jackson3.ObjectCloudEventUnmarshallerFactory;
+import org.kie.kogito.addon.cloudevents.spring.jackson3.StringCloudEventUnmarshallerFactory;
 import org.kie.kogito.event.CloudEventUnmarshallerFactory;
 import org.kie.kogito.event.EventUnmarshaller;
-import org.kie.kogito.event.impl.ByteArrayCloudEventUnmarshallerFactory;
-import org.kie.kogito.event.impl.JacksonEventDataUnmarshaller;
-import org.kie.kogito.event.impl.ObjectCloudEventUnmarshallerFactory;
-import org.kie.kogito.event.impl.StringCloudEventUnmarshallerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
 
 @Configuration
 public class EventUnmarshallerProducer {
